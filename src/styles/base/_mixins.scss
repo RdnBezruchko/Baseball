@@ -1,0 +1,192 @@
+//Headings
+
+@mixin Heading_1 {
+  font-weight: 600;
+  font-size: 48px;
+  line-height: 68px;
+}
+
+@mixin Heading_2 {
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 110%;
+}
+
+@mixin Heading_3 {
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 44px;
+}
+
+@mixin Heading_4 {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 120%;
+}
+
+@mixin Heading_5 {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 28px;
+}
+
+@mixin Heading_6 {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 120%;
+}
+
+//Body
+
+//Body Bold
+
+@mixin BodyXLarge-Bold {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 140%;
+  /* or 25px */
+}
+@mixin BodyLarge-Bold {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 140%;
+  /* or 22px */
+}
+@mixin BodyMedium-Bold {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 140%;
+}
+@mixin BodySmall-Bold {
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 14px;
+}
+@mixin BodyXSmall-Bold {
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 12px;
+  /* identical to box height */
+}
+
+// Body SemiBold
+
+@mixin BodyXLarge-SemiBold {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 140%;
+  /* or 25px */
+}
+@mixin BodyLarge-SemiBold {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 140%;
+  /* or 22px */
+}
+@mixin BodyMedium-SemiBold {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 140%;
+}
+@mixin BodySmall-SemiBold {
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 14px;
+}
+@mixin BodyXSmall-SemiBold {
+  font-weight: 600;
+  font-size: 10px;
+  line-height: 12px;
+  /* identical to box height */
+}
+
+//Body Medium
+@mixin BodyXLarge-Medium {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 140%;
+  /* or 25px */
+}
+@mixin BodyLarge-Medium {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 140%;
+  /* or 22px */
+}
+@mixin BodyMedium-Medium {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 140%;
+}
+@mixin BodySmall-Medium {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+}
+@mixin BodyXSmall-Medium {
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12px;
+  /* identical to box height */
+}
+
+//Body Regular
+@mixin BodyXLarge-Regular {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 140%;
+  /* or 25px */
+}
+@mixin BodyLarge-Regular {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 140%;
+  /* or 22px */
+}
+@mixin BodyMedium-Regular {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 140%;
+}
+@mixin BodySmall-Regular {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+}
+@mixin BodyXSmall-Regular {
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  /* identical to box height */
+}
+
+//Body Light
+@mixin BodyXLarge-Light {
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 140%;
+  /* or 25px */
+}
+@mixin BodyLarge-Light {
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 140%;
+  /* or 22px */
+}
+@mixin BodyMedium-Light {
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 140%;
+}
+@mixin BodySmall-Light {
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 14px;
+}
+@mixin BodyXSmall-Light {
+  font-weight: 300;
+  font-size: 10px;
+  line-height: 12px;
+  /* identical to box height */
+}
+

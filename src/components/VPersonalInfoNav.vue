@@ -1,0 +1,66 @@
+<template>
+  <nav class="navigation">
+    <h6
+      v-for="(navItem, index) in navItems"
+      :key="index"
+      :class="{active: navItem.active === true}"
+      class="navigation__item"
+      @click="active(navItem)"
+    >{{ navItem.name }}</h6>
+  </nav>
+</template>
+
+<script>
+
+  
+
+  export default {
+    name: 'VPersonalInfoNav',
+    props: {
+      navItems: {
+        type: Array,
+        required: true,
+        
+      },
+    },
+    emits: ['active'],
+    setup(props, {emit}) {
+      function active(navItem) {
+        emit('active', navItem)
+      }
+      return {
+        active,
+      };
+    },
+  };
+</script>
+
+<style scoped lang="scss">
+  @import "/src/styles/main";
+  .navigation {
+    &__item {
+      @include Heading_6;
+      margin-top: 32px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      transition: 1s all;
+      
+      &:first-child {
+        margin: 0;
+      }
+      &.active {
+        &:before {
+          transition: 1s all;
+          content: '';
+          display: block;
+          width: 4px;
+          height: 32px;
+          background: #1C3166;
+          border-radius: 8px;
+          margin: 0 16px 0 15px;
+        }
+      }
+    }
+  }
+</style>
