@@ -1,40 +1,36 @@
 <template>
   <div class="inputs">
     <VInput
-      v-model="email"
+      v-model="streetAddress"
       class="inputs__item"
-      :input-name="'Email'"
-      :placeholder-name="'Enter your Email'"
+      :input-name="'Street address'"
+      :placeholder-name="'Street address'"
     ></VInput>
     <VInput
-      v-model="firstName"
+      v-model="city"
       class="inputs__item"
-      :input-name="'First Name'"
-      :placeholder-name="'Enter First Name'"
+      :input-name="'City'"
+      :placeholder-name="'Enter city'"
     ></VInput>
+    <VDropDown :drop-down-size="'large'" v-model="state" class="inputs__dropdown" :drop-down-title="'State'"></VDropDown>
     <VInput
-      v-model="middleName"
+      v-model="zipCode"
       class="inputs__item"
-      :input-name="'Middle Name (optional)'"
-      :placeholder-name="'Enter Middle Name (optional)'"
-    ></VInput>
-    <VInput
-      
-      v-model="lastName"
-      class="inputs__item"
-      :input-name="'Last Name'"
-      :placeholder-name="'Enter Last Name'"
+      :input-name="'Zip code'"
+      :placeholder-name="'Zip code'"
     ></VInput>
   </div>
 </template>
 
 <script>
-  import {toRefs} from 'vue';
+  import {ref, toRefs} from 'vue';
   import VInput from './VInput.vue';
+  import VDropDown from './VDropDown.vue';
   
   export default {
-    name: 'VAboutMyself',
+    name: 'VAddressAndZipInformation',
     components: {
+      VDropDown,
       VInput,
     },
     props: {
@@ -45,12 +41,18 @@
       },
     },
     setup(props) {
-      const {email, firstName, middleName, lastName} = toRefs(props.itemsData);
+      
+      const someData = ref(props.itemsData)
+      const {zipCode, city, streetAddress, state} = toRefs(props.itemsData)
+      
+      
+      
       return {
-        email,
-        firstName,
-        middleName,
-        lastName,
+        someData,
+        state,
+        zipCode,
+        city,
+        streetAddress,
       };
     },
   };
@@ -65,11 +67,9 @@
   .inputs {
     display: flex;
     flex-direction: column;
-    
     &__dropdown {
       margin-top: 32px;
     }
-    
     &__item {
       margin-top: 32px;
       

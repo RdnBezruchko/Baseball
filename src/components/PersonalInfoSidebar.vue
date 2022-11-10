@@ -18,20 +18,21 @@
       <!--        <img class="sidebar__logo" src="../assets/svg/PersonalInfo/users.svg" alt="#">-->
       <!--      </div>-->
       <div
-        v-for="(icon, index) in icons"
+        v-for="(menuItem, index) in menuItems"
         :key="index"
         class="sidebar__round"
-        :class="{active: icon.active}"
-        @click="activeSideBar(icon)"
+        :class="{active: menuItem.active}"
+        @click="activateSideBar(menuItem)"
       >
-        <img class="sidebar__logo" :src="icon.icon" alt="">
+        <img v-if="menuItem.active === false" class="sidebar__logo" :src="menuItem.icon" alt="">
+        <img v-if="menuItem.active === true" class="sidebar__logo" :src="menuItem.iconWhite" alt="">
       </div>
     </div>
     <!-- /.sidebar__log -->
     <div class="sidebar__round">
       <img
         class="sidebar__logo"
-        src="../assets/svg/PersonalInfo/login.svg"
+        src="../assets/svg/PersonalInfo/logOutWhite.svg"
         alt="#"
       >
     </div>
@@ -40,23 +41,23 @@
 
 <script>
   export default {
-    name: 'VSidebar',
+    name: 'PersonalInfoSidebar',
     props: {
-      icons: {
+      menuItems: {
         type: Array,
         default() {
           return undefined;
         },
       },
     },
-    emits: ['activeSideBar'],
+    emits: ['activateSideBar'],
     
     setup(props, {emit}) {
-      function activeSideBar(icon) {
-        emit('activeSideBar', icon)
+      function activateSideBar(icon) {
+        emit('activateSideBar', icon)
       }
       return {
-        activeSideBar,
+        activateSideBar,
       }
     },
   };

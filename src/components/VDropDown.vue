@@ -1,27 +1,27 @@
 <template>
   <div>
     <div
-      class="title"
       :class="{disabled: checked === !true}"
+      class="title"
     >{{ dropDownTitle }}
     </div>
     <div class="menu">
       <div
         class="menu__wrapper"
+        :class="{large: dropDownSize === 'large', small: dropDownSize === 'small'}"
         @click="switchMenu"
       >
         <p :class="{disabled: checked === !true}" class="menu__title">{{ selectedName }}</p>
-
-
         <img
+          alt="#"
           class="menu__dropdown"
           src="../assets/Vector.png"
-          alt="#"
         >
       </div>
       <div
         v-if="isOpen"
         class="SubMenu"
+        :class="{large: dropDownSize === 'large', small: dropDownSize === 'small'}"
       >
         <div
           v-for="(dropDownMenu, index) in dropDownMenus"
@@ -39,65 +39,69 @@
 
 
 <script>
-import {ref} from 'vue';
+  import {ref} from 'vue';
 
-export default {
-  name: 'VDropDownLarge',
-  props: {
-    dropDownTitle: {
-      type: String,
-      default: 'Type Something',
+  export default {
+    name: 'VDropDown',
+    props: {
+      dropDownTitle: {
+        type: String,
+        default: 'Type Something',
+      },
+      dropDownMenus: {
+        type: Array,
+        default: () => ([]),
+      },
+      modelValue: {
+        type: [Number, String],
+        default: '',
+      },
+      checked: {
+        type: Boolean,
+        default: true,
+      },
+      dropDownSize: {
+        type: String,
+        default: 'large',
+      },
+      // selectedName: {
+      //   type: String,
+      //   default: '',
+      // },
     },
-    dropDownMenus: {
-      type: Array,
-      default: () => ([]),
-    },
-    modelValue: {
-      type: [Number, String],
-      default: ''
-    },
-    checked: {
-      type: Boolean,
-      default: undefined
-    }
-    // selectedName: {
-    //   type: String,
-    //   default: '',
-    // },
-  },
-  emits: ['update:modelValue'],
-  setup(props, {emit}) {
-    const isOpen = ref(false);
-    const selectedName = ref('');
+    emits: ['update:modelValue'],
+    setup(props, {emit}) {
+      const isOpen = ref(false);
+      const selectedName = ref('');
 
-    function switchMenu() {
-
-      if(props.checked === true) {
-        isOpen.value = !isOpen.value;
+      function switchMenu() {
+        if (props.checked === true) {
+          isOpen.value = !isOpen.value;
+        }
       }
-    }
 
-    function isChosen(dropDownMenuName) {
-      selectedName.value = dropDownMenuName;
-      isOpen.value = !isOpen.value;
-      emit('update:modelValue', selectedName)
+      function isChosen(dropDownMenuName) {
+        selectedName.value = dropDownMenuName;
+        isOpen.value = !isOpen.value;
+        emit('update:modelValue', selectedName)
 
 
-    }
 
-    return {
-      isOpen,
-      selectedName,
-      isChosen,
-      switchMenu,
-    };
-  },
-};
+      }
+
+      return {
+        isOpen,
+        selectedName,
+        isChosen,
+        switchMenu,
+      };
+    },
+  };
 </script>
 
 <style
-  scoped
   lang="scss"
+  scoped
 >
 @import "/src/styles/main";
 
@@ -112,17 +116,23 @@ export default {
 
 .menu {
   margin-top: 12px;
-
   &__wrapper {
     cursor: pointer;
     display: flex;
     align-items: center;
     padding: 17px 16px;
     justify-content: space-between;
-    width: 382px;
     height: 56px;
     background: $Light-Blue-Light;
     border-radius: 8px;
+    position: relative;
+    z-index: 1;
+    &.large {
+      width: 382px;
+    }
+    &.small {
+      width: 178px;
+    }
   }
 
   &__title {
@@ -144,13 +154,17 @@ export default {
   display: block;
   margin-top: 15px;
   background: $Light-Blue-Dark-Light;
-
-
-  width: 382px;
   height: 130px;
-
   border-radius: 8px;
   border: 1px solid #7792D7;
+  position: absolute;
+  z-index: 2;
+  &.large {
+    width: 382px;
+  }
+  &.small {
+    width: 178px;
+  }
 
   &__item {
     @include BodyLarge-Medium;

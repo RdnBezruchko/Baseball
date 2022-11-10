@@ -8,7 +8,7 @@
     <input
       v-model="localValue"
       class="input__item"
-      :class="{error: error == null && inputData.length > 0, disabled: checked == false}"
+      :class="{error: error == null && inputMail.length > 0, disabled: checked == false}"
       :placeholder="placeholderName"
       :type="passwordHide ? 'password' : 'text'"
     >
@@ -17,7 +17,7 @@
 
 <script>
   import {computed} from 'vue';
-  
+
   export default {
     name: 'VInput',
     props: {
@@ -26,7 +26,7 @@
         type: String,
         default: '',
       },
-      inputData: {
+      inputMail: {
         type: String,
         default: '',
       },
@@ -50,7 +50,7 @@
         type: Boolean,
         default: undefined,
       },
-      
+
     //-----------------------------------------
     },
     emits: ['update:modelValue'],
@@ -59,7 +59,6 @@
         get: () => props.modelValue,
         set: (value) => emit('update:modelValue', value),
       });
-      console.log(props.checked)
       return {
         localValue,
       };
@@ -74,7 +73,7 @@
   scoped
 >
   @import "/src/styles/main";
-  
+
   .input {
     width: 382px;
     &__name {
@@ -93,40 +92,40 @@
       border: none;
       border-radius: 8px;
       @include BodyLarge-Medium;
-      padding: 17px 16px;
+      padding: 17px 40px 17px 16px;
       margin-top: 12px;
-  
-  
+
+
       &:focus {
         color: $Black-Normal;
         background: $Light-Blue-Dark-Light;
         border: 1px solid $Light-Blue-Dark;
-    
+
       }
-  
+
       &::placeholder {
         color: $Grey-Medium;
       }
-  
+
       &.disabled {
         background: $Light-Blue-Light;
         cursor: default;
-    
+
         &::placeholder {
           color: $Grey-Normal;
         }
       }
-  
+
       &.error {
         background: $Red-Light;
         color: $Red-Easy;
         border: 1px solid $Red-Easy;
-    
+
         &::placeholder {
           color: $Red-Easy;
         }
       }
-      
+
     }
   }
 

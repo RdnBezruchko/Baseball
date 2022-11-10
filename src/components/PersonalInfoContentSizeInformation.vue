@@ -1,15 +1,17 @@
 <template>
   <div class="items">
     <div class="items__wrapper">
-      <VDropDownSmall
+      <VDropDown
         v-model="primaryPosition"
+        :drop-down-size="'small'"
         :drop-down-title="'Primary position*'"
         :drop-down-menus="test"
-      ></VDropDownSmall>
-      <VDropDownSmall
+      ></VDropDown>
+      <VDropDown
         v-model="secondaryPosition"
+        :drop-down-size="'small'"
         :drop-down-title="'Secondary position*'"
-      ></VDropDownSmall>
+      ></VDropDown>
     </div>
     <div class="items__wrapper">
       <VInput
@@ -29,30 +31,35 @@
         :input-name="'Weight, lb*'"
         class="items__input"
       ></VInput>
-      <VDropDownSmall
+      <VDropDown
         v-model="thrower"
+        :drop-down-size="'small'"
         :drop-down-title="'Thrower*'"
-      ></VDropDownSmall>
+      ></VDropDown>
     </div>
     <div class="items__wrapper">
-      <VDropDownSmall
+      <VDropDown
         v-model="batter"
+        :drop-down-size="'small'"
         :drop-down-title="'Batter* '"
-      ></VDropDownSmall>
-      <VDropDownSmall
+      ></VDropDown>
+      <VDropDown
         v-model="pantsSize"
+        :drop-down-size="'small'"
         :drop-down-title="'Shorts/Pants size*'"
-      ></VDropDownSmall>
+      ></VDropDown>
     </div>
     <div class="items__wrapper">
-      <VDropDownSmall
+      <VDropDown
         v-model="shirtSize"
+        :drop-down-size="'small'"
         :drop-down-title="'Shirt size*'"
-      ></VDropDownSmall>
-      <VDropDownSmall
+      ></VDropDown>
+      <VDropDown
         v-model="hatSize"
+        :drop-down-size="'small'"
         :drop-down-title="'Hat size*'"
-      ></VDropDownSmall>
+      ></VDropDown>
     </div>
   
   </div>
@@ -60,14 +67,14 @@
 
 <script>
   import {toRefs} from 'vue';
-  import VDropDownSmall from './VDropDownSmall.vue';
   import VInput from './VInput.vue';
+  import VDropDown from "./VDropDown.vue";
   
   export default {
-    name: 'VSizeInformation',
+    name: 'PersonalInfoContentSizeInformation',
     components: {
+      VDropDown,
       VInput,
-      VDropDownSmall,
     },
     props: {
       itemsData: {

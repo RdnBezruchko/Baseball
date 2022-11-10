@@ -25,7 +25,7 @@
   import VInput from './VInput.vue';
   
   export default {
-    name: 'VContactInformation',
+    name: 'PersonalInfoContentContactInformation',
     components:
       {
         VInput,

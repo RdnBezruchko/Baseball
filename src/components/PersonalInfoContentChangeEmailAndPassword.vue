@@ -5,13 +5,13 @@
       :input-name="'Email*'"
       :placeholder-name="'Enter email'"
     ></VInput>
-    <VButton class="btn" :button="'Change Email'"></VButton>
+    <VButton class="inputs_btn" :button="'Change Email'"></VButton>
     <div class="password">
       <p class="password__title">Password</p>
       <p class="password__descr">If you want to change the existing password, please click the button “Change
         password”</p>
     </div>
-    <VButton class="btn" :button="'Change Password'"></VButton>
+    <VButton class="inputs_btn" :button="'Change Password'"></VButton>
   </div>
 </template>
 
@@ -20,7 +20,7 @@
   import VButton from './VButton.vue';
   
   export default {
-    name: 'VChangeEmailAndPassword',
+    name: 'PersonalInfoContentChangeEmailAndPassword',
     components: {
       VButton,
       VInput,
@@ -60,7 +60,7 @@
       margin-top: 12px;
     }
   }
-  .btn {
+  .inputs_btn {
     margin-top: 32px;
   }
 </style>

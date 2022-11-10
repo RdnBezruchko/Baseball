@@ -5,30 +5,25 @@
       <div>
         <h2 class="login__header">Log in</h2>
         <div class="login__description">Please enter your credentials to access your account</div>
-        <VButton
-          :input="input"
-          class="login__btn"
-          :button="'Login'"
-          @click="checkMail()"
-        ></VButton>
+
         <VInput
-          v-model="input.mail"
-          :input-data="input.mail"
+          v-model="inputData.mail"
+          :input-mail="inputData.mail"
           :input-name="'Email'"
-          :error="error"
+          :error="errorStatus"
           type="email"
           class="login__input"
           :placeholder-name="'Enter your Email'"
         ></VInput>
         <div class="login__password">
           <VInput
-            v-model="input.password"
+            v-model="inputData.password"
             :input-name="'Password'"
             minlength="6"
             :password-hide="passwordCheck"
             class="login__input"
             :placeholder-name="'Enter your password'"
-            :class="{error: false}"
+            :class="{errorStatus: false}"
           ></VInput>
           <img
             v-show="passwordCheck"
@@ -43,6 +38,12 @@
             @click="showPassword"
           >
         </div>
+        <VButton
+          :input-data="inputData"
+          class="login__btn"
+          :button="'Login'"
+          @click="checkMail()"
+        ></VButton>
         <div class="password">
           <div class="wrapper">
             <VCheckBox></VCheckBox>
@@ -73,15 +74,16 @@
     },
     setup() {
       const passwordCheck = ref(false);
-      const input = ref({
+      const inputData = ref({
         mail: '',
         password: '',
       });
-      const error = ref('null');
+      const errorStatus = ref('null');
       
       function checkMail() {
-        error.value =
-          input.value.mail.toString().toLowerCase().match(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
+        if (inputData.value.mail.length > 0 && inputData.value.password.length > 0) {
+          errorStatus.value = inputData.value.mail.toString().toLowerCase().match(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
+        }
       }
       
       function showPassword() {
@@ -89,9 +91,9 @@
       }
       
       return {
-        input,
+        inputData,
         checkMail,
-        error,
+        errorStatus,
         showPassword,
         passwordCheck,
       };

@@ -1,27 +1,46 @@
 <template>
-  <button
-    :class="{disabled: input.mail === '' && input.password === ''}"
-    class="btn">{{ button }}</button>
+  <div>
+    <button
+      v-if="typeButton === 'primary'"
+      :class="{disabled: inputData.mail === '' || inputData.password === '', large: sizeButton === 'large', small: sizeButton === 'small' }"
+      class="btn">{{ button }}</button>
+    <div
+      v-if="typeButton === 'secondary'"
+      class="secondaryBtn"
+      @click="clickSecondaryBtnLarge"
+    >{{ button }}</div>
+  </div>
 </template>
 
 <script>
   export default {
     name: 'VButton',
     props: {
-      input: {
+      inputData: {
         type: Object,
-        default() {
-          return {};
-        },
+        default: () => ({}),
       },
       button: {
         type: String,
         default: 'Type something...',
       },
+      sizeButton: {
+        type: String,
+        default: 'large',
+      },
+      typeButton: {
+        type: String,
+        default: 'primary'
+      }
     },
-    setup() {
-      
-      return {};
+    emits: ['clickSecondaryBtnLarge'],
+    setup(props, {emit}) {
+      function clickSecondaryBtnLarge() {
+        emit('clickSecondaryBtnLarge');
+      }
+      return {
+        clickSecondaryBtnLarge,
+      };
     },
   };
 </script>
@@ -34,7 +53,6 @@
   
   .btn {
     padding: 16px 24px;
-    width: 382px;
     height: 56px;
     background: $Red-Medium;
     color: $White-Normal;
@@ -43,6 +61,12 @@
     border-radius: 4px;
     @include BodyXLarge-Bold;
     transition: 0.3s all;
+    &.large {
+      width: 382px;
+    }
+    &.small {
+      width: 140px;
+    }
     
     &:hover {
       background: $Red-Normal;
@@ -56,5 +80,20 @@
       background: $Grey-Light;
       cursor: default;
     }
+  }
+
+  .secondaryBtn {
+    @include BodyXLarge-SemiBold;
+    color: $Light-Blue-Heavy;
+    cursor: pointer;
+
+    &:hover {
+      color: $Light-Blue-Dark;
+    }
+
+    &:active {
+      color: $Light-Blue-Heavy;
+    }
+
   }
 </style>

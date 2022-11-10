@@ -20,7 +20,6 @@
       navItems: {
         type: Array,
         required: true,
-        
       },
     },
     emits: ['active'],
@@ -38,6 +37,8 @@
 <style scoped lang="scss">
   @import "/src/styles/main";
   .navigation {
+    width: 280px;
+    margin-right: 280px;
     &__item {
       @include Heading_6;
       margin-top: 32px;

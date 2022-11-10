@@ -1,14 +1,14 @@
 <template>
   <div class="wrapper">
-    <VSecondaryBtnLarge
-      v-if="parent.addParent"
-      :name-btn="`${parentTitle ? '2' : '1'}st Parent information`"
+    <VButton
+      v-if="parentStatus.addParent"
+      :type-button="'secondary'"
+      :button="`${parentTitle ? '2' : '1'}st Parent information`"
       @click-secondary-btn-large="switchParent"
-      
-    ></VSecondaryBtnLarge>
+    ></VButton>
     <h3 class="wrapper__header">{{ `${parentTitle ? '1' : '2'}st Parent information` }}</h3>
     <div
-      v-if="parent.switchParent"
+      v-if="parentStatus.switchParent"
       class="inputs"
     >
       <VInput
@@ -16,12 +16,6 @@
         class="inputs__item"
         :input-name="'First Name*'"
         :placeholder-name="'Enter First Name*'"
-      ></VInput>
-      <VInput
-        v-model="firstParentMiddleName"
-        class="inputs__item"
-        :input-name="'Middle Name*'"
-        :placeholder-name="'Enter Middle Name*'"
       ></VInput>
       <VInput
         v-model="firstParentLastName"
@@ -52,7 +46,7 @@
     </div>
     
     <div
-      v-if="!parent.switchParent"
+      v-if="!parentStatus.switchParent"
       class="inputs"
     >
       <VInput
@@ -60,12 +54,6 @@
         class="inputs__item"
         :input-name="'First Name*'"
         :placeholder-name="'Enter First Name*'"
-      ></VInput>
-      <VInput
-        v-model="secondParentMiddleName"
-        class="inputs__item"
-        :input-name="'Middle Name*'"
-        :placeholder-name="'Enter Middle Name*'"
       ></VInput>
       <VInput
         v-model="secondParentLastName"
@@ -93,25 +81,26 @@
       ></VInput>
     </div>
     
-    <VSecondaryBtnLarge
-      v-if="!parent.addParent"
-      :name-btn="'+ Add Parent(optional) '"
+    <VButton
+      v-if="!parentStatus.addParent"
+      :type-button="'secondary'"
+      :button="'+ Add Parent(optional) '"
       @click-secondary-btn-large="addParent"
-    ></VSecondaryBtnLarge>
+    ></VButton>
   </div>
 
 </template>
 
 <script>
   import {ref, toRefs} from 'vue';
-  import VSecondaryBtnLarge from './VSecondaryBtnLarge.vue';
   import VInput from './VInput.vue';
+  import VButton from "./VButton.vue";
   
   export default {
-    name: 'VParentGuardianInformation',
+    name: 'PersonalInfoContentParentGuardianInformation',
     components: {
+      VButton,
       VInput,
-      VSecondaryBtnLarge,
     },
     props: {
       itemsData: {
@@ -137,22 +126,22 @@
         secondParentSocialNetwork,
       } = toRefs(props.itemsData);
       const parentTitle = ref(true);
-      const parent = ref({
+      const parentStatus = ref({
         addParent: false,
         switchParent: true,
       });
       
       function addParent() {
-        parent.value.addParent = !parent.value.addParent;
+        parentStatus.value.addParent = !parentStatus.value.addParent;
       }
       
       function switchParent() {
-        parent.value.switchParent = !parent.value.switchParent;
+        parentStatus.value.switchParent = !parentStatus.value.switchParent;
         parentTitle.value = !parentTitle.value;
       }
       
       return {
-        parent,
+        parentStatus,
         parentTitle,
         addParent,
         switchParent,
