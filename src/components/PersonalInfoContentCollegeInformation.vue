@@ -1,7 +1,7 @@
 <template>
   <div class="inputs">
     <div class="committed">
-      <VCheckBox class="committed__checkbox" @check-func="checkFunc" ></VCheckBox>
+      <VCheckBox class="committed__checkbox" @check="check"></VCheckBox>
       <div class="committed__description">I have already committed to a college</div>
     </div>
     <VInput
@@ -9,7 +9,7 @@
       :checked="checked"
       class="inputs__item"
       :input-name="'College Name'"
-      :placeholder-name="'Enter College Name'"
+      :placeholder="'Enter College Name'"
     ></VInput>
     <VDropDown
       v-model="division"
@@ -53,19 +53,13 @@
         {
           name: 'Division 3',
         },
-        // {
-        //   name: 'Division 3',
-        // },
-        // {
-        //   name: 'Division 3',
-        // },
       ];
 
       const {collageName, division} = toRefs(props.itemsData)
       const someConst = ref('')
       const checked = ref(false)
 
-      function checkFunc() {
+      function check() {
         checked.value = !checked.value
       }
 
@@ -74,7 +68,7 @@
         division,
         divisions,
         someConst,
-        checkFunc,
+        check,
         checked,
       };
     },
@@ -108,7 +102,7 @@
     margin-top: 40px;
 
     &:first-child {
-      margin: 0px;
+      margin: 0;
     }
   }
 }

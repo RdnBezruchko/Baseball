@@ -12,7 +12,7 @@
         ></VInput>
         <VButton
           class="forgot__btn"
-          :class="{disabled: input.mail == '' && input.password == ''}"
+          :class="{disabled: input.mail === '' && input.password === ''}"
           :button="'Send Reset link'"
         ></VButton>
       </div>

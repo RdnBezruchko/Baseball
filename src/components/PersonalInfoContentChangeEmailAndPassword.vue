@@ -3,15 +3,15 @@
     <VInput
       class="inputs__item"
       :input-name="'Email*'"
-      :placeholder-name="'Enter email'"
+      :placeholder="'Enter email'"
     ></VInput>
-    <VButton class="inputs_btn" :button="'Change Email'"></VButton>
+    <VButton class="inputs_btn" :button-name="'Change Email'"></VButton>
     <div class="password">
       <p class="password__title">Password</p>
       <p class="password__descr">If you want to change the existing password, please click the button “Change
         password”</p>
     </div>
-    <VButton class="inputs_btn" :button="'Change Password'"></VButton>
+    <VButton class="inputs_btn" :button-name="'Change Password'"></VButton>
   </div>
 </template>
 
@@ -42,7 +42,7 @@
       margin-top: 32px;
       
       &:first-child {
-        margin: 0px;
+        margin: 0;
       }
     }
   }

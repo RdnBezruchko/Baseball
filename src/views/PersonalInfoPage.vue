@@ -21,7 +21,7 @@
   import PersonalInfoContent from '../components/PersonalInfoContent.vue';
   
   export default {
-    name: 'PersonalInfo',
+    name: 'PersonalInfoPage',
     components: {
       PersonalInfoContent,
       PersonalInfoSidebar,

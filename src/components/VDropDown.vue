@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      :class="{disabled: checked === !true}"
+      :class="{disabled: !checked}"
       class="title"
     >{{ dropDownTitle }}
     </div>
@@ -11,7 +11,7 @@
         :class="{large: dropDownSize === 'large', small: dropDownSize === 'small'}"
         @click="switchMenu"
       >
-        <p :class="{disabled: checked === !true}" class="menu__title">{{ selectedName }}</p>
+        <p :class="{disabled: !checked}" class="menu__title">{{ selectedName }}</p>
         <img
           alt="#"
           class="menu__dropdown"
@@ -20,18 +20,17 @@
       </div>
       <div
         v-if="isOpen"
-        class="SubMenu"
+        class="subMenu"
         :class="{large: dropDownSize === 'large', small: dropDownSize === 'small'}"
       >
         <div
           v-for="(dropDownMenu, index) in dropDownMenus"
           :key="index"
-          class="SubMenu__item"
+          class="subMenu__item"
           @click="isChosen(dropDownMenu.name)"
         >
           {{ dropDownMenu.name }}
         </div>
-        <!-- /.menuItem -->
       </div>
     </div>
   </div>
@@ -64,10 +63,6 @@
         type: String,
         default: 'large',
       },
-      // selectedName: {
-      //   type: String,
-      //   default: '',
-      // },
     },
     emits: ['update:modelValue'],
     setup(props, {emit}) {
@@ -75,7 +70,7 @@
       const selectedName = ref('');
 
       function switchMenu() {
-        if (props.checked === true) {
+        if (props.checked) {
           isOpen.value = !isOpen.value;
         }
       }
@@ -83,10 +78,7 @@
       function isChosen(dropDownMenuName) {
         selectedName.value = dropDownMenuName;
         isOpen.value = !isOpen.value;
-        emit('update:modelValue', selectedName)
-
-
-
+        emit('update:modelValue', selectedName.value)
       }
 
       return {
@@ -150,7 +142,7 @@
   }
 }
 
-.SubMenu {
+.subMenu {
   display: block;
   margin-top: 15px;
   background: $Light-Blue-Dark-Light;

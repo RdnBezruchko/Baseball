@@ -1,9 +1,9 @@
 <template>
   <div class="content">
-    <VPersonalInfoContentNav
+    <PersonalInfoContentNav
       :nav-items="navItems"
       @active="activateNavItem"
-    ></VPersonalInfoContentNav>
+    ></PersonalInfoContentNav>
     
     <div class="content__information">
       <component
@@ -14,8 +14,8 @@
       />
       <VButton
         class="content__btn"
-        :button="'Save'"
-        :size-button="'small'"
+        :button-name="'Save'"
+        :button-size="'small'"
       ></VButton>
     </div>
   </div>
@@ -25,7 +25,7 @@
 <script>
   
   import {ref} from 'vue';
-  import VPersonalInfoContentNav from './PersonalInfoContentNav.vue';
+  import PersonalInfoContentNav from './PersonalInfoContentNav.vue';
   import PersonalInfoContentAboutMyself from './PersonalInfoContentAboutMyself.vue';
   import PersonalInfoContentAddressAndZipInformation from './PersonalInfoContentAddressAndZipInformation.vue';
   import PersonalInfoContentContactInformation from './PersonalInfoContentContactInformation.vue';
@@ -38,7 +38,7 @@
   export default {
     name: 'PersonalInfoContent',
     components: {
-      VPersonalInfoContentNav,
+      PersonalInfoContentNav,
       PersonalInfoContentAboutMyself,
       PersonalInfoContentAddressAndZipInformation,
       PersonalInfoContentChangeEmailAndPassword,
@@ -166,11 +166,7 @@
       justify-content: space-between;
       width: calc(100% - 560px);
     }
-    
-    .content__input {
-      //margin-right: 116px;
-    }
-    
+
     .content__btn {
       align-self: end;
     }

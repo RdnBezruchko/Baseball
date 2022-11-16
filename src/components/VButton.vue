@@ -1,18 +1,16 @@
 <template>
   <div>
     <button
-      v-if="typeButton === 'primary'"
-      :class="{disabled: inputData.mail === '' || inputData.password === '', large: sizeButton === 'large', small: sizeButton === 'small' }"
-      class="btn">{{ button }}</button>
-    <div
-      v-if="typeButton === 'secondary'"
-      class="secondaryBtn"
+      :class="classList"
       @click="clickSecondaryBtnLarge"
-    >{{ button }}</div>
+    >{{ buttonName }}</button>
+
   </div>
 </template>
 
 <script>
+  import {computed} from "vue";
+
   export default {
     name: 'VButton',
     props: {
@@ -20,26 +18,34 @@
         type: Object,
         default: () => ({}),
       },
-      button: {
+      buttonName: {
         type: String,
         default: 'Type something...',
       },
-      sizeButton: {
+      buttonSize: {
         type: String,
         default: 'large',
       },
-      typeButton: {
+      buttonType: {
         type: String,
-        default: 'primary'
-      }
+        default: 'primary',
+      },
     },
     emits: ['clickSecondaryBtnLarge'],
     setup(props, {emit}) {
       function clickSecondaryBtnLarge() {
         emit('clickSecondaryBtnLarge');
       }
+      const classList = computed(() => ({
+        btn: props.buttonType === 'primary',
+        secondaryBtn: props.buttonType === 'secondary',
+        btn_large: props.buttonSize === 'large',
+        btn_small: props.buttonSize === 'small',
+        disabled: props.inputData.mail && props.inputData.password ? !props.inputData.mail.length && props.inputData.password.length : true,
+      }))
       return {
         clickSecondaryBtnLarge,
+        classList,
       };
     },
   };
@@ -61,10 +67,10 @@
     border-radius: 4px;
     @include BodyXLarge-Bold;
     transition: 0.3s all;
-    &.large {
+    &.btn_large {
       width: 382px;
     }
-    &.small {
+    &.btn_small {
       width: 140px;
     }
     
@@ -86,6 +92,9 @@
     @include BodyXLarge-SemiBold;
     color: $Light-Blue-Heavy;
     cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0;
 
     &:hover {
       color: $Light-Blue-Dark;

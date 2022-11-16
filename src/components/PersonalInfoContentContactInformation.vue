@@ -4,19 +4,19 @@
       v-model="phoneNumber"
       class="inputs__item"
       :input-name="'Player cell phone number*'"
-      :placeholder-name="'phone'"
+      :placeholder="'phone'"
     ></VInput>
     <VInput
       v-model="instagram"
       class="inputs__item"
       :input-name="'Instagram (optional)'"
-      :placeholder-name="'Instagram'"
+      :placeholder="'Instagram'"
     ></VInput>
     <VInput
       v-model="twitter"
       class="inputs__item"
       :input-name="'Twitter (optional)'"
-      :placeholder-name="'Twitter'"
+      :placeholder="'Twitter'"
     ></VInput>
   </div>
 </template>
@@ -62,7 +62,7 @@
       margin-top: 32px;
       
       &:first-child {
-        margin: 0px;
+        margin: 0;
       }
     }
   }

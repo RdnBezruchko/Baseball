@@ -8,9 +8,9 @@
 
         <VInput
           v-model="inputData.mail"
-          :input-mail="inputData.mail"
+          :mail-string="inputData.mail"
           :input-name="'Email'"
-          :error="errorStatus"
+          :error="isErrorActive"
           type="email"
           class="login__input"
           :placeholder-name="'Enter your Email'"
@@ -23,25 +23,26 @@
             :password-hide="passwordCheck"
             class="login__input"
             :placeholder-name="'Enter your password'"
-            :class="{errorStatus: false}"
           ></VInput>
           <img
             v-show="passwordCheck"
             class="login__show"
             src="../assets/svg/eye%20on.svg"
+            alt="#"
             @click="showPassword"
           >
           <img
             v-show="!passwordCheck"
             class="login__show"
             src="../assets/svg/eye%20off.svg"
+            alt="#"
             @click="showPassword"
           >
         </div>
         <VButton
           :input-data="inputData"
           class="login__btn"
-          :button="'Login'"
+          :button-name="'Login'"
           @click="checkMail()"
         ></VButton>
         <div class="password">
@@ -66,7 +67,7 @@
   import VCheckBox from "../components/VCheckBox.vue";
   
   export default {
-    name: 'VLoginPage',
+    name: 'LoginPage',
     components: {
       VCheckBox,
       VInput,
@@ -78,11 +79,11 @@
         mail: '',
         password: '',
       });
-      const errorStatus = ref('null');
+      const isErrorActive = ref(true);
       
       function checkMail() {
         if (inputData.value.mail.length > 0 && inputData.value.password.length > 0) {
-          errorStatus.value = inputData.value.mail.toString().toLowerCase().match(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
+          isErrorActive.value = inputData.value.mail.toString().toLowerCase().match(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
         }
       }
       
@@ -93,7 +94,7 @@
       return {
         inputData,
         checkMail,
-        errorStatus,
+        isErrorActive,
         showPassword,
         passwordCheck,
       };

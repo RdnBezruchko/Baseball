@@ -2,11 +2,11 @@
   <div class="wrapper">
     <VButton
       v-if="parentStatus.addParent"
-      :type-button="'secondary'"
-      :button="`${parentTitle ? '2' : '1'}st Parent information`"
+      :button-type="'secondary'"
+      :button-name="`${isParentActive ? '2' : '1'}st Parent information`"
       @click-secondary-btn-large="switchParent"
     ></VButton>
-    <h3 class="wrapper__header">{{ `${parentTitle ? '1' : '2'}st Parent information` }}</h3>
+    <h3 class="wrapper__header">{{ `${isParentActive ? '1' : '2'}st Parent information` }}</h3>
     <div
       v-if="parentStatus.switchParent"
       class="inputs"
@@ -15,31 +15,31 @@
         v-model="firstParentFirstName"
         class="inputs__item"
         :input-name="'First Name*'"
-        :placeholder-name="'Enter First Name*'"
+        :placeholder="'Enter First Name*'"
       ></VInput>
       <VInput
         v-model="firstParentLastName"
         class="inputs__item"
         :input-name="'Last Name*'"
-        :placeholder-name="'Enter Last Name*'"
+        :placeholder="'Enter Last Name*'"
       ></VInput>
       <VInput
         v-model="firstParentPhoneNumber"
         class="inputs__item"
         :input-name="'Cell phone number*'"
-        :placeholder-name="'Enter phone number*'"
+        :placeholder="'Enter phone number*'"
       ></VInput>
       <VInput
         v-model="firstParentEmail"
         class="inputs__item"
         :input-name="'Email'"
-        :placeholder-name="'Email'"
+        :placeholder="'Email'"
       ></VInput>
       <VInput
         v-model="firstParentSocialNetwork"
         class="inputs__item"
         :input-name="'Instagram/Twitter/Facebook (optional)'"
-        :placeholder-name="'Instagram/Twitter/Facebook'"
+        :placeholder="'Instagram/Twitter/Facebook'"
       ></VInput>
     
     
@@ -53,38 +53,38 @@
         v-model="secondParentFirstName"
         class="inputs__item"
         :input-name="'First Name*'"
-        :placeholder-name="'Enter First Name*'"
+        :placeholder="'Enter First Name*'"
       ></VInput>
       <VInput
         v-model="secondParentLastName"
         class="inputs__item"
         :input-name="'Last Name*'"
-        :placeholder-name="'Enter Last Name*'"
+        :placeholder="'Enter Last Name*'"
       ></VInput>
       <VInput
         v-model="secondParentPhoneNumber"
         class="inputs__item"
         :input-name="'Cell phone number*'"
-        :placeholder-name="'Enter phone number*'"
+        :placeholder="'Enter phone number*'"
       ></VInput>
       <VInput
         v-model="secondParentEmail"
         class="inputs__item"
         :input-name="'Email'"
-        :placeholder-name="'Email'"
+        :placeholder="'Email'"
       ></VInput>
       <VInput
         v-model="secondParentSocialNetwork"
         class="inputs__item"
         :input-name="'Instagram/Twitter/Facebook (optional)'"
-        :placeholder-name="'Instagram/Twitter/Facebook'"
+        :placeholder="'Instagram/Twitter/Facebook'"
       ></VInput>
     </div>
     
     <VButton
       v-if="!parentStatus.addParent"
-      :type-button="'secondary'"
-      :button="'+ Add Parent(optional) '"
+      :button-type="'secondary'"
+      :button-name="'+ Add Parent(optional) '"
       @click-secondary-btn-large="addParent"
     ></VButton>
   </div>
@@ -125,7 +125,7 @@
         secondParentEmail,
         secondParentSocialNetwork,
       } = toRefs(props.itemsData);
-      const parentTitle = ref(true);
+      const isParentActive = ref(true);
       const parentStatus = ref({
         addParent: false,
         switchParent: true,
@@ -137,12 +137,12 @@
       
       function switchParent() {
         parentStatus.value.switchParent = !parentStatus.value.switchParent;
-        parentTitle.value = !parentTitle.value;
+        isParentActive.value = !isParentActive.value;
       }
       
       return {
         parentStatus,
-        parentTitle,
+        isParentActive,
         addParent,
         switchParent,
         firstParentFirstName,

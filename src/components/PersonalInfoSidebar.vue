@@ -8,15 +8,6 @@
       >
     </div>
     <div class="sidebar__logos">
-      <!--      <div class="sidebar__round" :class="{active: true}">-->
-      <!--        <img class="sidebar__logo" src="../assets/svg/PersonalInfo/user%20check.svg" alt="#">-->
-      <!--      </div>-->
-      <!--      <div class="sidebar__round" :class="{active: false}">-->
-      <!--        <img class="sidebar__logo" src="../assets/svg/PersonalInfo/payments.svg" alt="#">-->
-      <!--      </div>-->
-      <!--      <div class="sidebar__round" :class="{active: false}">-->
-      <!--        <img class="sidebar__logo" src="../assets/svg/PersonalInfo/users.svg" alt="#">-->
-      <!--      </div>-->
       <div
         v-for="(menuItem, index) in menuItems"
         :key="index"
@@ -24,11 +15,10 @@
         :class="{active: menuItem.active}"
         @click="activateSideBar(menuItem)"
       >
-        <img v-if="menuItem.active === false" class="sidebar__logo" :src="menuItem.icon" alt="">
-        <img v-if="menuItem.active === true" class="sidebar__logo" :src="menuItem.iconWhite" alt="">
+        <img v-if="!menuItem.active " class="sidebar__logo" :src="menuItem.icon" alt="">
+        <img v-if="menuItem.active" class="sidebar__logo" :src="menuItem.iconWhite" alt="">
       </div>
     </div>
-    <!-- /.sidebar__log -->
     <div class="sidebar__round">
       <img
         class="sidebar__logo"
@@ -45,9 +35,7 @@
     props: {
       menuItems: {
         type: Array,
-        default() {
-          return undefined;
-        },
+        default: () => ([]),
       },
     },
     emits: ['activateSideBar'],

@@ -3,13 +3,13 @@
     <div
       v-if="inputName.length > 0"
       class="input__name"
-      :class="{disabled: checked == false}"
+      :class="{disabled: !checked}"
     >{{ inputName }}</div>
     <input
       v-model="localValue"
       class="input__item"
-      :class="{error: error == null && inputMail.length > 0, disabled: checked == false}"
-      :placeholder="placeholderName"
+      :class="{error: !error && mailString.length > 0, disabled: !checked}"
+      :placeholder="placeholder"
       :type="passwordHide ? 'password' : 'text'"
     >
   </div>
@@ -21,12 +21,11 @@
   export default {
     name: 'VInput',
     props: {
-      // LOGIN PAGE
       inputName: {
         type: String,
         default: '',
       },
-      inputMail: {
+      mailString: {
         type: String,
         default: '',
       },
@@ -34,13 +33,13 @@
         type: [String, Number],
         default: '',
       },
-      placeholderName: {
+      placeholder: {
         type: String,
         default: 'Type something...',
       },
       error: {
-        type: String,
-        default: '',
+        type: Boolean,
+        default: false,
       },
       passwordHide: {
         type: Boolean,
@@ -48,10 +47,8 @@
       },
       checked: {
         type: Boolean,
-        default: undefined,
+        default: true,
       },
-
-    //-----------------------------------------
     },
     emits: ['update:modelValue'],
     setup(props, {emit}) {
