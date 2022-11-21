@@ -1,10 +1,10 @@
 <template>
   <div class="wrapper">
     <div class="wrapper__background"></div>
-    <div class="login">
+    <div class="login-page">
       <div>
-        <h2 class="login__header">Log in</h2>
-        <div class="login__description">Please enter your credentials to access your account</div>
+        <h2 class="login-page__header">Log in</h2>
+        <div class="login-page__description">Please enter your credentials to access your account</div>
 
         <VInput
           v-model="inputData.mail"
@@ -12,46 +12,35 @@
           :input-name="'Email'"
           :error="isErrorActive"
           type="email"
-          class="login__input"
-          :placeholder-name="'Enter your Email'"
+          class="login-page__input"
+          :placeholder="'Enter your Email'"
         ></VInput>
-        <div class="login__password">
-          <VInput
-            v-model="inputData.password"
-            :input-name="'Password'"
-            minlength="6"
-            :password-hide="passwordCheck"
-            class="login__input"
-            :placeholder-name="'Enter your password'"
-          ></VInput>
-          <img
-            v-show="passwordCheck"
-            class="login__show"
-            src="../assets/svg/eye%20on.svg"
-            alt="#"
-            @click="showPassword"
-          >
-          <img
-            v-show="!passwordCheck"
-            class="login__show"
-            src="../assets/svg/eye%20off.svg"
-            alt="#"
-            @click="showPassword"
-          >
-        </div>
+
+        <VInput
+          v-model="inputData.password"
+          :input-name="'Password'"
+          :is-password-eye="true"
+          :is-password-hidden="isPasswordHidden"
+          class="login-page__input"
+          :placeholder="'Enter your password'"
+          @show-password="showPassword"
+        ></VInput>
+
         <VButton
-          :input-data="inputData"
-          class="login__btn"
-          :button-name="'Login'"
-          @click="checkMail()"
-        ></VButton>
-        <div class="password">
-          <div class="wrapper">
+          :is-disabled="isAvailableLogin"
+          class="login-page__btn"
+          :button-text="'Login'"
+          @click="checkMail"
+        >
+          Login
+        </VButton>
+        <div class="footer">
+          <div class="footer__wrapper">
             <VCheckBox></VCheckBox>
-            <div class="password__remember">Remember me</div>
+            <div class="footer__remember">Remember me</div>
           </div>
           <router-link
-            class="password__forgot"
+            class="footer__forgot"
             to="/forgot"
           >Forgot password?</router-link>
         </div>
@@ -61,7 +50,7 @@
 </template>
 
 <script>
-  import {ref} from 'vue';
+  import {computed, ref} from 'vue';
   import VInput from '../components/VInput.vue';
   import VButton from '../components/VButton.vue';
   import VCheckBox from "../components/VCheckBox.vue";
@@ -74,21 +63,22 @@
       VButton,
     },
     setup() {
-      const passwordCheck = ref(false);
+      const isPasswordHidden = ref(true);
       const inputData = ref({
         mail: '',
         password: '',
       });
-      const isErrorActive = ref(true);
+      const isErrorActive = ref(false);
+      const isAvailableLogin = computed(() => inputData.value.mail && inputData.value.password ? !inputData.value.mail.length && inputData.value.password.length : true)
       
       function checkMail() {
         if (inputData.value.mail.length > 0 && inputData.value.password.length > 0) {
-          isErrorActive.value = inputData.value.mail.toString().toLowerCase().match(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
+          isErrorActive.value = !inputData.value.mail.toString().toLowerCase().match(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
         }
       }
       
       function showPassword() {
-        passwordCheck.value = !passwordCheck.value;
+        isPasswordHidden.value = !isPasswordHidden.value;
       }
       
       return {
@@ -96,7 +86,8 @@
         checkMail,
         isErrorActive,
         showPassword,
-        passwordCheck,
+        isPasswordHidden,
+        isAvailableLogin,
       };
     },
   };
@@ -110,7 +101,7 @@
   
   
   
-  .login {
+  .login-page {
     
     display: flex;
     flex-direction: column;
@@ -134,19 +125,7 @@
       color: $Grey-Hard;
       margin-top: 20px;
     }
-    
-    &__password {
-      position: relative;
-    }
-    
-    &__show {
-      cursor: pointer;
-      
-      position: absolute;
-      top: 78px;
-      right: 15px;
-    }
-    
+
     &__btn {
       margin: 0 auto;
       margin-top: 32px;
@@ -158,15 +137,19 @@
     }
   }
   
-  .password {
+  .footer {
     
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 24px;
+
+    &__wrapper {
+      display: flex;
+      align-items: center;
+    }
     
     & > input {
-      //margin-top: 24px;
       background: $White-Normal;
       border-radius: 4px;
     }

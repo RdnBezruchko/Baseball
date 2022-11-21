@@ -28,12 +28,12 @@
 </template>
 
 <script>
-  import {ref, toRefs} from 'vue';
+  import {toRefs} from 'vue';
   import VInput from './VInput.vue';
   import VDropDown from './VDropDown.vue';
 
   export default {
-    name: 'VAddressAndZipInformation',
+    name: 'PersonalInfoContentAddressAndZipInformation',
     components: {
       VDropDown,
       VInput,
@@ -46,14 +46,8 @@
       },
     },
     setup(props) {
-
-      const someData = ref(props.itemsData)
       const {zipCode, city, streetAddress, state} = toRefs(props.itemsData)
-
-
-
       return {
-        someData,
         state,
         zipCode,
         city,

@@ -2,8 +2,8 @@
   <div>
     <button
       :class="classList"
-      @click="clickSecondaryBtnLarge"
-    >{{ buttonName }}</button>
+      @click="clickBtn"
+    ><slot>submit</slot></button>
 
   </div>
 </template>
@@ -18,7 +18,7 @@
         type: Object,
         default: () => ({}),
       },
-      buttonName: {
+      buttonText: {
         type: String,
         default: 'Type something...',
       },
@@ -30,21 +30,26 @@
         type: String,
         default: 'primary',
       },
+      isDisabled: {
+        type: Boolean,
+        default: false,
+      },
+
     },
-    emits: ['clickSecondaryBtnLarge'],
+    emits: ['clickBtn'],
     setup(props, {emit}) {
-      function clickSecondaryBtnLarge() {
-        emit('clickSecondaryBtnLarge');
+      function clickBtn() {
+        emit('clickBtn');
       }
       const classList = computed(() => ({
         btn: props.buttonType === 'primary',
         secondaryBtn: props.buttonType === 'secondary',
         btn_large: props.buttonSize === 'large',
         btn_small: props.buttonSize === 'small',
-        disabled: props.inputData.mail && props.inputData.password ? !props.inputData.mail.length && props.inputData.password.length : true,
+        disabled: props.isDisabled,
       }))
       return {
-        clickSecondaryBtnLarge,
+        clickBtn,
         classList,
       };
     },
@@ -58,6 +63,8 @@
   @import "/src/styles/main";
   
   .btn {
+    display: flex;
+    justify-content: center;
     padding: 16px 24px;
     height: 56px;
     background: $Red-Medium;

@@ -3,16 +3,14 @@
     <h6
       v-for="(navItem, index) in navItems"
       :key="index"
-      :class="{active: navItem.active === true}"
+      :class="{active: navItem.active}"
       class="navigation__item"
-      @click="active(navItem)"
+      @click="activateNavItem(navItem)"
     >{{ navItem.name }}</h6>
   </nav>
 </template>
 
 <script>
-
-  
 
   export default {
     name: 'VPersonalInfoNav',
@@ -22,13 +20,13 @@
         required: true,
       },
     },
-    emits: ['active'],
+    emits: ['activateNavItem'],
     setup(props, {emit}) {
-      function active(navItem) {
-        emit('active', navItem)
+      function activateNavItem(navItem) {
+        emit('activateNavItem', navItem)
       }
       return {
-        active,
+        activateNavItem,
       };
     },
   };

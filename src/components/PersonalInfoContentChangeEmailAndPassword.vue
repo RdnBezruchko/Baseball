@@ -5,13 +5,21 @@
       :input-name="'Email*'"
       :placeholder="'Enter email'"
     ></VInput>
-    <VButton class="inputs_btn" :button-name="'Change Email'"></VButton>
+    <VButton
+      class="inputs_btn"
+    >
+      Change Email
+    </VButton>
     <div class="password">
       <p class="password__title">Password</p>
       <p class="password__descr">If you want to change the existing password, please click the button “Change
         password”</p>
     </div>
-    <VButton class="inputs_btn" :button-name="'Change Password'"></VButton>
+    <VButton
+      class="inputs_btn"
+    >
+      Change Password
+    </VButton>
   </div>
 </template>
 

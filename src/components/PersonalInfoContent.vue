@@ -2,7 +2,7 @@
   <div class="content">
     <PersonalInfoContentNav
       :nav-items="navItems"
-      @active="activateNavItem"
+      @activate-nav-item="activateNavItem"
     ></PersonalInfoContentNav>
     
     <div class="content__information">
@@ -14,9 +14,10 @@
       />
       <VButton
         class="content__btn"
-        :button-name="'Save'"
         :button-size="'small'"
-      ></VButton>
+      >
+        Save
+      </VButton>
     </div>
   </div>
 

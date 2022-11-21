@@ -6,7 +6,7 @@
     </div>
     <VInput
       v-model="collageName"
-      :checked="checked"
+      :is-disabled="checked"
       class="inputs__item"
       :input-name="'College Name'"
       :placeholder="'Enter College Name'"
@@ -14,8 +14,8 @@
     <VDropDown
       v-model="division"
       class="inputs__dropdown"
-      :checked="checked"
-      :drop-down-menus="divisions"
+      :is-disabled="checked"
+      :options="divisions"
       :drop-down-title="'Division'"
     ></VDropDown>
   </div>
@@ -56,7 +56,6 @@
       ];
 
       const {collageName, division} = toRefs(props.itemsData)
-      const someConst = ref('')
       const checked = ref(false)
 
       function check() {
@@ -67,7 +66,6 @@
         collageName,
         division,
         divisions,
-        someConst,
         check,
         checked,
       };

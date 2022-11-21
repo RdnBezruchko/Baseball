@@ -5,7 +5,7 @@
         v-model="primaryPosition"
         :drop-down-size="'small'"
         :drop-down-title="'Primary position*'"
-        :drop-down-menus="test"
+        :options="test"
       ></VDropDown>
       <VDropDown
         v-model="secondaryPosition"
@@ -17,11 +17,13 @@
       <VInput
         v-model="heightFT"
         :input-name="'Height, ft*'"
+        :placeholder="'Height, ft*'"
         class="items__input"
       ></VInput>
       <VInput
         v-model="heightIN"
         :input-name="'Height, in*'"
+        :placeholder="'Height, in**'"
         class="items__input"
       ></VInput>
     </div>
@@ -29,6 +31,7 @@
       <VInput
         v-model="weight"
         :input-name="'Weight, lb*'"
+        :placeholder="'Weight, lb*'"
         class="items__input"
       ></VInput>
       <VDropDown
@@ -61,7 +64,6 @@
         :drop-down-title="'Hat size*'"
       ></VDropDown>
     </div>
-  
   </div>
 </template>
 
@@ -83,23 +85,6 @@
       },
     },
     setup(props) {
-      // const items = [
-      //   {
-      //     title: '',
-      //   },
-      //   {
-      //     title: '',
-      //   },
-      //   {
-      //     title: '',
-      //   },
-      //   {
-      //     title: '',
-      //   },
-      //   {
-      //     title: '',
-      //   },
-      // ];
       const test = [
         {
           name: 'LHP',

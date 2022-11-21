@@ -3,14 +3,30 @@
     <div
       v-if="inputName.length > 0"
       class="input__name"
-      :class="{disabled: !checked}"
+      :class="{disabled: !isDisabled}"
     >{{ inputName }}</div>
     <input
       v-model="localValue"
       class="input__item"
-      :class="{error: !error && mailString.length > 0, disabled: !checked}"
+      :class="{error: error && modelValue.length > 0, disabled: !isDisabled}"
       :placeholder="placeholder"
-      :type="passwordHide ? 'password' : 'text'"
+      :type="isPasswordHidden ? 'password' : 'text'"
+    >
+    <img
+      v-if="isPasswordEye"
+      v-show="isPasswordHidden"
+      class="input__icon"
+      src="../assets/svg/eye%20on.svg"
+      alt="#"
+      @click="showPassword"
+    >
+    <img
+      v-if="isPasswordEye"
+      v-show="!isPasswordHidden"
+      class="input__icon"
+      src="../assets/svg/eye%20off.svg"
+      alt="#"
+      @click="showPassword"
     >
   </div>
 </template>
@@ -22,10 +38,6 @@
     name: 'VInput',
     props: {
       inputName: {
-        type: String,
-        default: '',
-      },
-      mailString: {
         type: String,
         default: '',
       },
@@ -41,25 +53,32 @@
         type: Boolean,
         default: false,
       },
-      passwordHide: {
+      isPasswordEye: {
         type: Boolean,
         default: false,
       },
-      checked: {
+      isPasswordHidden: {
+        type: Boolean,
+        default: false,
+      },
+      isDisabled: {
         type: Boolean,
         default: true,
       },
     },
-    emits: ['update:modelValue'],
+    emits: ['update:modelValue', 'showPassword'],
     setup(props, {emit}) {
       const localValue = computed({
         get: () => props.modelValue,
         set: (value) => emit('update:modelValue', value),
       });
+      function showPassword() {
+        emit('showPassword')
+      }
       return {
         localValue,
+        showPassword,
       };
-
     },
   };
 </script>
@@ -73,12 +92,20 @@
 
   .input {
     width: 382px;
+    position: relative;
     &__name {
       @include BodyMedium-Bold;
       color: $Light-Blue-Hard;
       &.disabled {
         color: $Grey-Normal;
       }
+    }
+    &__icon {
+      cursor: pointer;
+
+      position: absolute;
+      top: 45px;
+      right: 20px;
     }
     &__item {
       background: $Light-Blue-Light;
@@ -125,5 +152,6 @@
 
     }
   }
+
 
 </style>

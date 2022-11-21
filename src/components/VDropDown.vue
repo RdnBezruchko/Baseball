@@ -1,35 +1,32 @@
 <template>
-  <div>
+  <div class="wrapper" :class="classList">
     <div
-      :class="{disabled: !checked}"
       class="title"
     >{{ dropDownTitle }}
     </div>
     <div class="menu">
       <div
         class="menu__wrapper"
-        :class="{large: dropDownSize === 'large', small: dropDownSize === 'small'}"
         @click="switchMenu"
       >
-        <p :class="{disabled: !checked}" class="menu__title">{{ selectedName }}</p>
+        <p class="menu__title">{{ selectedName }}</p>
         <img
           alt="#"
-          class="menu__dropdown"
+          class="menu__icon"
           src="../assets/Vector.png"
         >
       </div>
       <div
         v-if="isOpen"
         class="subMenu"
-        :class="{large: dropDownSize === 'large', small: dropDownSize === 'small'}"
       >
         <div
-          v-for="(dropDownMenu, index) in dropDownMenus"
+          v-for="(option, index) in options"
           :key="index"
           class="subMenu__item"
-          @click="isChosen(dropDownMenu.name)"
+          @click="chosenOption(option.name)"
         >
-          {{ dropDownMenu.name }}
+          {{ option.name }}
         </div>
       </div>
     </div>
@@ -38,7 +35,7 @@
 
 
 <script>
-  import {ref} from 'vue';
+  import {computed, ref} from 'vue';
 
   export default {
     name: 'VDropDown',
@@ -47,7 +44,7 @@
         type: String,
         default: 'Type Something',
       },
-      dropDownMenus: {
+      options: {
         type: Array,
         default: () => ([]),
       },
@@ -55,7 +52,7 @@
         type: [Number, String],
         default: '',
       },
-      checked: {
+      isDisabled: {
         type: Boolean,
         default: true,
       },
@@ -70,13 +67,18 @@
       const selectedName = ref('');
 
       function switchMenu() {
-        if (props.checked) {
+        if (props.isDisabled) {
           isOpen.value = !isOpen.value;
         }
       }
 
-      function isChosen(dropDownMenuName) {
-        selectedName.value = dropDownMenuName;
+      const classList = computed(() => ({
+        disabled: !props.isDisabled,
+        large: props.dropDownSize === 'large',
+        small: props.dropDownSize === 'small',
+      }))
+      function chosenOption(optionName) {
+        selectedName.value = optionName;
         isOpen.value = !isOpen.value;
         emit('update:modelValue', selectedName.value)
       }
@@ -84,7 +86,8 @@
       return {
         isOpen,
         selectedName,
-        isChosen,
+        classList,
+        chosenOption,
         switchMenu,
       };
     },
@@ -97,76 +100,108 @@
 >
 @import "/src/styles/main";
 
-.title {
-  @include BodyMedium-Bold;
-  color: $Light-Blue-Hard;
+.wrapper {
+  .menu {
+    margin-top: 12px;
+    &__wrapper {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      padding: 17px 16px;
+      justify-content: space-between;
+      height: 56px;
+      background: $Light-Blue-Light;
+      border-radius: 8px;
+      position: relative;
+      z-index: 1;
+      &.large {
+        width: 382px;
+      }
+      &.small {
+        width: 178px;
+      }
+    }
 
-  &.disabled {
-    color: $Grey-Normal;
+    &__title {
+      margin-right: 15px;
+
+      &.disabled {
+        color: $Grey-Normal;
+      }
+    }
+
+    &__icon {
+      width: 14px;
+      height: 8px;
+      cursor: pointer;
+    }
   }
-}
 
-.menu {
-  margin-top: 12px;
-  &__wrapper {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    padding: 17px 16px;
-    justify-content: space-between;
-    height: 56px;
-    background: $Light-Blue-Light;
+  .subMenu {
+    display: block;
+    margin-top: 15px;
+    background: $Light-Blue-Dark-Light;
+    height: 130px;
     border-radius: 8px;
-    position: relative;
-    z-index: 1;
+    border: 1px solid #7792D7;
+    position: absolute;
+    z-index: 2;
     &.large {
       width: 382px;
     }
     &.small {
       width: 178px;
     }
+
+    &__item {
+      @include BodyLarge-Medium;
+      color: $Black-Normal;
+      padding: 8px 44px 8px 16px;
+      cursor: pointer;
+
+      &:hover {
+        background: $Light_Blue-Medium;
+      }
+    }
   }
-
-  &__title {
-    margin-right: 15px;
-
-    &.disabled {
+  .title {
+    @include BodyMedium-Bold;
+    color: $Light-Blue-Hard;
+  }
+  &.disabled {
+    .title {
+      color: $Grey-Normal;
+    }
+    .menu__title {
       color: $Grey-Normal;
     }
   }
-
-  &__dropdown {
-    width: 14px;
-    height: 8px;
-    cursor: pointer;
-  }
-}
-
-.subMenu {
-  display: block;
-  margin-top: 15px;
-  background: $Light-Blue-Dark-Light;
-  height: 130px;
-  border-radius: 8px;
-  border: 1px solid #7792D7;
-  position: absolute;
-  z-index: 2;
   &.large {
-    width: 382px;
+    .menu__wrapper {
+      width: 382px;
+    }
+    .subMenu {
+      width: 382px;
+    }
   }
   &.small {
-    width: 178px;
-  }
-
-  &__item {
-    @include BodyLarge-Medium;
-    color: $Black-Normal;
-    padding: 8px 44px 8px 16px;
-    cursor: pointer;
-
-    &:hover {
-      background: $Light_Blue-Medium;
+    .menu__wrapper {
+      width: 178px
+    }
+    .subMenu {
+      width: 178px;
     }
   }
 }
+
+//.title {
+//  @include BodyMedium-Bold;
+//  color: $Light-Blue-Hard;
+//
+//  &.disabled {
+//    color: $Grey-Normal;
+//  }
+//}
+
+
 </style>

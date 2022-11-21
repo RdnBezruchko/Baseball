@@ -3,9 +3,10 @@
     <VButton
       v-if="parentStatus.addParent"
       :button-type="'secondary'"
-      :button-name="`${isParentActive ? '2' : '1'}st Parent information`"
-      @click-secondary-btn-large="switchParent"
-    ></VButton>
+      @click-btn="switchParent"
+    >
+      {{`${isParentActive ? '2' : '1'}st Parent information`}}
+    </VButton>
     <h3 class="wrapper__header">{{ `${isParentActive ? '1' : '2'}st Parent information` }}</h3>
     <div
       v-if="parentStatus.switchParent"
@@ -84,9 +85,10 @@
     <VButton
       v-if="!parentStatus.addParent"
       :button-type="'secondary'"
-      :button-name="'+ Add Parent(optional) '"
-      @click-secondary-btn-large="addParent"
-    ></VButton>
+      @click-btn="addParent"
+    >
+      + Add Parent(optional)
+    </VButton>
   </div>
 
 </template>
