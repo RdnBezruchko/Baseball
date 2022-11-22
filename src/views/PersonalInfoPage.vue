@@ -7,7 +7,7 @@
     ></PersonalInfoSidebar>
     
     <div class="wrapper__item">
-      <PersonalInfoHeader :title="headerTitle"></PersonalInfoHeader>
+      <PersonalInfoHeader :header-label="headerLabel"></PersonalInfoHeader>
       <component :is="component" />
     </div>
     
@@ -31,7 +31,6 @@
       const component = ref('PersonalInfoContent');
       const menu = ref([
         {
-          // icon: '/src/assets/svg/PersonalInfo/users.svg',
           name: 'Personal info',
           icon: '/src/assets/svg/PersonalInfo/userCheckWhite.svg',
           iconWhite: '/src/assets/svg/PersonalInfo/userСheck.svg',
@@ -53,20 +52,20 @@
           active: false,
         },
       ]);
-      const headerTitle = ref(menu.value[0].name);
+      const headerLabel = ref(menu.value[0].name);
       function activateSideBar(menuItem) {
         component.value = menuItem.component;
         menu.value.forEach((element) => {
           element.active = false;
         });
         menuItem.active = !menuItem.active;
-        headerTitle.value = menuItem.name;
+        headerLabel.value = menuItem.name;
       }
       
       return {
         menu,
         component,
-        headerTitle,
+        headerLabel,
         activateSideBar,
       };
       

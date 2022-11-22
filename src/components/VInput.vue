@@ -1,10 +1,10 @@
 <template>
   <div class="input">
     <div
-      v-if="inputName.length > 0"
-      class="input__name"
+      v-if="inputLabel.length > 0"
+      class="input__label"
       :class="{disabled: isDisabled}"
-    >{{ inputName }}</div>
+    >{{ inputLabel }}</div>
     <input
       v-model="localValue"
       class="input__item"
@@ -13,16 +13,14 @@
       :type="isPasswordHidden ? 'password' : 'text'"
     >
     <img
-      v-if="isPasswordEye"
-      v-show="isPasswordHidden"
+      v-if="isPasswordIconHidden && isPasswordHidden"
       class="input__icon"
       src="../assets/svg/eye%20on.svg"
       alt="#"
       @click="showPassword"
     >
     <img
-      v-if="isPasswordEye"
-      v-show="!isPasswordHidden"
+      v-if="isPasswordIconHidden && !isPasswordHidden"
       class="input__icon"
       src="../assets/svg/eye%20off.svg"
       alt="#"
@@ -37,7 +35,7 @@
   export default {
     name: 'VInput',
     props: {
-      inputName: {
+      inputLabel: {
         type: String,
         default: '',
       },
@@ -53,7 +51,7 @@
         type: Boolean,
         default: false,
       },
-      isPasswordEye: {
+      isPasswordIconHidden: {
         type: Boolean,
         default: false,
       },
@@ -93,7 +91,7 @@
   .input {
     width: 382px;
     position: relative;
-    &__name {
+    &__label {
       @include BodyMedium-Bold;
       color: $Light-Blue-Hard;
       &.disabled {

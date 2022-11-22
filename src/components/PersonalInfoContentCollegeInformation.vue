@@ -1,14 +1,17 @@
 <template>
   <div class="inputs">
-    <div class="committed">
-      <VCheckBox class="committed__checkbox" @check="check"></VCheckBox>
+    <div class="inputs__committed committed">
+      <VCheckBox
+        сlass="committed__checkbox"
+        @check="check"
+      ></VCheckBox>
       <div class="committed__description">I have already committed to a college</div>
     </div>
     <VInput
-      v-model="collageName"
+      v-model="collageName  "
       :is-disabled="checked"
       class="inputs__item"
-      :input-name="'College Name'"
+      :input-label="'College Name'"
       :placeholder="'Enter College Name'"
     ></VInput>
     <VDropDown

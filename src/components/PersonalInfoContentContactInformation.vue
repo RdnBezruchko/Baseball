@@ -3,19 +3,19 @@
     <VInput
       v-model="phoneNumber"
       class="inputs__item"
-      :input-name="'Player cell phone number*'"
+      :input-label="'Player cell phone number*'"
       :placeholder="'phone'"
     ></VInput>
     <VInput
       v-model="instagram"
       class="inputs__item"
-      :input-name="'Instagram (optional)'"
+      :input-label="'Instagram (optional)'"
       :placeholder="'Instagram'"
     ></VInput>
     <VInput
       v-model="twitter"
       class="inputs__item"
-      :input-name="'Twitter (optional)'"
+      :input-label="'Twitter (optional)'"
       :placeholder="'Twitter'"
     ></VInput>
   </div>

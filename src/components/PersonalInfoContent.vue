@@ -161,17 +161,14 @@
     height: calc(100% - 120px);
     justify-content: space-between;
     padding: 40px 64px 64px 64px;
-    
     &__information {
       display: flex;
       justify-content: space-between;
       width: calc(100% - 560px);
     }
-
     .content__btn {
       align-self: end;
     }
-    
     &__inputs {
       margin-right: 116px;
     }

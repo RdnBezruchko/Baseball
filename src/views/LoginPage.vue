@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <div class="wrapper__background"></div>
-    <div class="login-page">
+    <div class="wrapper__login-page login-page">
       <div>
         <h2 class="login-page__header">Log in</h2>
         <div class="login-page__description">Please enter your credentials to access your account</div>
@@ -9,7 +9,7 @@
         <VInput
           v-model="inputData.mail"
           :mail-string="inputData.mail"
-          :input-name="'Email'"
+          :input-label="'Email'"
           :error="isErrorActive"
           type="email"
           class="login-page__input"
@@ -18,8 +18,8 @@
 
         <VInput
           v-model="inputData.password"
-          :input-name="'Password'"
-          :is-password-eye="true"
+          :input-label="'Password'"
+          :is-password-icon-hidden="true"
           :is-password-hidden="isPasswordHidden"
           class="login-page__input"
           :placeholder="'Enter your password'"
@@ -34,13 +34,13 @@
         >
           Login
         </VButton>
-        <div class="footer">
+        <div class="login-page__footer footer">
           <div class="footer__wrapper">
             <VCheckBox></VCheckBox>
             <div class="footer__remember">Remember me</div>
           </div>
           <router-link
-            class="footer__forgot"
+            class="footer__btn"
             to="/forgot"
           >Forgot password?</router-link>
         </div>
@@ -73,7 +73,6 @@
       
       function checkMail() {
         isErrorActive.value = !inputData.value.mail.toString().toLowerCase().match(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
-        console.log('2133121321321')
       }
       
       function showPassword() {
@@ -154,7 +153,7 @@
     }
     
     
-    &__forgot {
+    &__btn {
       @include BodyMedium-SemiBold;
       color: $Light-Blue-Hard;
     }

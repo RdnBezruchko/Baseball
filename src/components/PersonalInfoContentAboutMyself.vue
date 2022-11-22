@@ -3,26 +3,25 @@
     <VInput
       v-model="email"
       class="inputs__item"
-      :input-name="'Email'"
+      :input-label="'Email'"
       :placeholder="'Enter your Email'"
     ></VInput>
     <VInput
       v-model="firstName"
       class="inputs__item"
-      :input-name="'First Name'"
+      :input-label="'First Name'"
       :placeholder="'Enter First Name'"
     ></VInput>
     <VInput
       v-model="middleName"
       class="inputs__item"
-      :input-name="'Middle Name (optional)'"
+      :input-label="'Middle Name (optional)'"
       :placeholder="'Enter Middle Name (optional)'"
     ></VInput>
     <VInput
-      
       v-model="lastName"
       class="inputs__item"
-      :input-name="'Last Name'"
+      :input-label="'Last Name'"
       :placeholder="'Enter Last Name'"
     ></VInput>
   </div>
@@ -65,10 +64,6 @@
   .inputs {
     display: flex;
     flex-direction: column;
-    
-    &__dropdown {
-      margin-top: 32px;
-    }
     
     &__item {
       margin-top: 32px;

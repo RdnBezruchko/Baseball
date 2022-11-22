@@ -1,17 +1,15 @@
 <template>
   <div class="wrapper" :class="classList">
     <div
-      class="title"
+      class="wrapper__label"
     >{{ dropDownTitle }}
     </div>
-    <div class="menu">
+    <div class="wrapper__menu menu">
       <div
         class="menu__wrapper"
-
         @click="switchMenu"
       >
-
-        <p class="menu__title">{{`${selectedName ? selectedName : 'Select anything'}`}}</p>
+        <p class="menu__label">{{`${selectedName ? selectedName : placeholder}`}}</p>
         <img
           alt="#"
           class="menu__icon"
@@ -20,12 +18,12 @@
       </div>
       <div
         v-if="isOpen"
-        class="subMenu"
+        class="wrapper__sub-menu sub-menu"
       >
         <div
           v-for="(option, index) in options"
           :key="index"
-          class="subMenu__item"
+          class="sub-menu__item"
           @click="chosenOption(option.name)"
         >
           {{ option.name }}
@@ -61,6 +59,10 @@
       dropDownSize: {
         type: String,
         default: 'large',
+      },
+      placeholder: {
+        type: String,
+        default: 'Select anything',
       },
     },
     emits: ['update:modelValue'],
@@ -109,6 +111,10 @@
 
 
 .wrapper {
+  &__label {
+    @include BodyMedium-Bold;
+    color: $Light-Blue-Hard;
+  }
   .menu {
     margin-top: 12px;
     &__wrapper {
@@ -122,23 +128,10 @@
       border-radius: 8px;
       position: relative;
       z-index: 1;
-
-      &.large {
-        width: 382px;
-      }
-      &.small {
-        width: 178px;
-      }
     }
-
-    &__title {
+    &__label {
       margin-right: 15px;
-
-      &.disabled {
-        color: $Grey-Normal;
-      }
     }
-
     &__icon {
       width: 14px;
       height: 8px;
@@ -146,7 +139,7 @@
     }
   }
 
-  .subMenu {
+  .sub-menu {
     display: block;
     margin-top: 15px;
     background: $Light-Blue-Dark-Light;
@@ -155,13 +148,6 @@
     border: 1px solid #7792D7;
     position: absolute;
     z-index: 2;
-    &.large {
-      width: 382px;
-    }
-    &.small {
-      width: 178px;
-    }
-
     &__item {
       @include BodyLarge-Medium;
       color: $Black-Normal;
@@ -179,20 +165,16 @@
       }
     }
   }
-  .title {
-    @include BodyMedium-Bold;
-    color: $Light-Blue-Hard;
-  }
   &.disabled {
-    .title {
+    .wrapper__label {
       color: $Grey-Normal;
     }
-    .menu__title {
+    .menu__label {
       color: $Grey-Normal;
     }
   }
   &.placeholderColor {
-    .menu__title {
+    .menu__label {
       color: $Grey-Medium;
     }
   }
@@ -200,7 +182,7 @@
     .menu__wrapper {
       width: 382px;
     }
-    .subMenu {
+    .sub-menu {
       width: 382px;
     }
   }
@@ -208,7 +190,7 @@
     .menu__wrapper {
       width: 178px
     }
-    .subMenu {
+    .sub-menu {
       width: 178px;
     }
   }

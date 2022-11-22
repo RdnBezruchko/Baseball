@@ -2,30 +2,32 @@
   <div class="sidebar">
     <div class="sidebar__header">
       <img
-        class="sidebar__PrimeLogo"
+        class="sidebar__prime-logo"
         src="../assets/svg/PersonalInfo/PrimeB-Logo.svg"
         alt=""
       >
     </div>
-    <div class="sidebar__logos">
+    <div class="sidebar__logos logos">
       <div
         v-for="(menuItem, index) in menuItems"
         :key="index"
-        class="sidebar__round"
+        class="logos__round"
         :class="{active: menuItem.active}"
         @click="activateSideBar(menuItem)"
       >
-        <img v-if="!menuItem.active " class="sidebar__logo" :src="menuItem.icon" alt="">
-        <img v-if="menuItem.active" class="sidebar__logo" :src="menuItem.iconWhite" alt="">
+        <img v-if="!menuItem.active " class="logos__logo" :src="menuItem.icon" alt="">
+        <img v-else class="logos__logo" :src="menuItem.iconWhite" alt="">
       </div>
     </div>
-    <div class="sidebar__round">
+    <router-link
+      to="/login"
+      class="sidebar__round">
       <img
         class="sidebar__logo"
         src="../assets/svg/PersonalInfo/logOutWhite.svg"
         alt="#"
       >
-    </div>
+    </router-link>
   </div>
 </template>
 
@@ -67,10 +69,6 @@
     height: 100vh;
     padding: 24px 24px 81px 24px;
     
-    &__header {
-    
-    }
-    
     &__round {
       width: 48px;
       height: 48px;
@@ -94,29 +92,47 @@
         background: white;
       }
     }
-    
-    &__logos {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
+    &__prime-logo {
+      border: 2px $White-Normal solid;
+      border-radius: 50%;
     }
-    
+  }
+  .logos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
     &__logo {
       cursor: pointer;
-      
       &:hover {
-      
+
       }
-      
       &:first-child {
         margin: 0;
       }
     }
-    
-    &__PrimeLogo {
-      border: 2px $White-Normal solid;
-      border-radius: 50%;
+    &__round {
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      margin-top: 40px;
+      transition: .3s all;
+
+      &:hover {
+        background: $Light-Blue-Heavy;
+      }
+
+      &:first-child {
+        margin: 0;
+      }
+
+      &.active {
+        background: white;
+      }
     }
   }
 </style>

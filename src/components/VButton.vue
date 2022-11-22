@@ -3,7 +3,11 @@
     <button
       :class="classList"
       @click="clickBtn"
-    ><slot>submit</slot></button>
+    >
+      <slot>
+        submit
+      </slot>
+    </button>
 
   </div>
 </template>
@@ -17,10 +21,6 @@
       inputData: {
         type: Object,
         default: () => ({}),
-      },
-      buttonText: {
-        type: String,
-        default: 'Type something...',
       },
       buttonSize: {
         type: String,
@@ -39,7 +39,9 @@
     emits: ['click'],
     setup(props, {emit}) {
       function clickBtn() {
-        emit('click');
+        if(!props.isDisabled) {
+          emit('click');
+        }
       }
       const classList = computed(() => ({
         btn: props.buttonType === 'primary',

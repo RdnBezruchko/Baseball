@@ -1,8 +1,8 @@
 <template>
   <header class="header">
-    <h3 class="header__title">{{ title }}</h3>
-    <div class="profile">
-      <h5 class="profile__name">{{ 'SomeName...' }}</h5>
+    <h3 class="header__title">{{ headerLabel }}</h3>
+    <div class="header__profile profile">
+      <h5 class="profile__name">{{ profileName }}</h5>
       <div class="profile__round">
         <img class="profile__logo" src="../assets/svg/PersonalInfo/Softball.svg" alt="">
       </div>
@@ -14,10 +14,14 @@
   export default {
     name: 'VPersonalInfoHeader',
     props: {
-      title: {
+      headerLabel: {
         type: String,
         default: '',
       },
+      profileName: {
+        type: String,
+        default: 'SomeName...',
+      }
     },
   };
 </script>

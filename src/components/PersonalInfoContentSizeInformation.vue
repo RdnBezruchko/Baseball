@@ -16,13 +16,13 @@
     <div class="items__wrapper">
       <VInput
         v-model="heightFT"
-        :input-name="'Height, ft*'"
+        :input-label="'Height, ft*'"
         :placeholder="'Height, ft*'"
         class="items__input"
       ></VInput>
       <VInput
         v-model="heightIN"
-        :input-name="'Height, in*'"
+        :input-label="'Height, in*'"
         :placeholder="'Height, in**'"
         class="items__input"
       ></VInput>
@@ -30,7 +30,7 @@
     <div class="items__wrapper">
       <VInput
         v-model="weight"
-        :input-name="'Weight, lb*'"
+        :input-label="'Weight, lb*'"
         :placeholder="'Weight, lb*'"
         class="items__input"
       ></VInput>

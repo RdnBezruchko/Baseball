@@ -2,7 +2,7 @@
   <div class="inputs">
     <VInput
       class="inputs__item"
-      :input-name="'Email*'"
+      :input-label="'Email*'"
       :placeholder="'Enter email'"
     ></VInput>
     <VButton
@@ -10,9 +10,9 @@
     >
       Change Email
     </VButton>
-    <div class="password">
+    <div class="inputs__password password">
       <p class="password__title">Password</p>
-      <p class="password__descr">If you want to change the existing password, please click the button “Change
+      <p class="password__description">If you want to change the existing password, please click the button “Change
         password”</p>
     </div>
     <VButton

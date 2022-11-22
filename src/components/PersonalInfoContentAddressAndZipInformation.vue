@@ -3,13 +3,13 @@
     <VInput
       v-model="streetAddress"
       class="inputs__item"
-      :input-name="'Street address'"
+      :input-label="'Street address'"
       :placeholder="'Street address'"
     ></VInput>
     <VInput
       v-model="city"
       class="inputs__item"
-      :input-name="'City'"
+      :input-label="'City'"
       :placeholder="'Enter city'"
     ></VInput>
     <VDropDown
@@ -21,7 +21,7 @@
     <VInput
       v-model="zipCode"
       class="inputs__item"
-      :input-name="'Zip code'"
+      :input-label="'Zip code'"
       :placeholder="'Zip code'"
     ></VInput>
   </div>

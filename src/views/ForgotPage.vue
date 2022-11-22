@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <div class="wrapper__background"></div>
-    <div class="forgot-page">
+    <div class="wrapper__forgot-page forgot-page">
       <div>
         <h2 class="forgot-page__header">Forgot password</h2>
         <div class="forgot-page__description">Enter your email to receive a link to reset your password</div>
@@ -9,6 +9,7 @@
           v-model="input.mail"
           class="forgot-page__input"
           :placeholder="'Enter your Email'"
+          :input-label="'Email'"
         ></VInput>
         <VButton
           class="forgot-page__btn"
