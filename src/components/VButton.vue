@@ -36,10 +36,10 @@
       },
 
     },
-    emits: ['clickBtn'],
+    emits: ['click'],
     setup(props, {emit}) {
       function clickBtn() {
-        emit('clickBtn');
+        emit('click');
       }
       const classList = computed(() => ({
         btn: props.buttonType === 'primary',

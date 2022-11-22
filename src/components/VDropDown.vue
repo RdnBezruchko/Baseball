@@ -7,9 +7,11 @@
     <div class="menu">
       <div
         class="menu__wrapper"
+
         @click="switchMenu"
       >
-        <p class="menu__title">{{ selectedName }}</p>
+
+        <p class="menu__title">{{`${selectedName ? selectedName : 'Select anything'}`}}</p>
         <img
           alt="#"
           class="menu__icon"
@@ -54,7 +56,7 @@
       },
       isDisabled: {
         type: Boolean,
-        default: true,
+        default: false,
       },
       dropDownSize: {
         type: String,
@@ -65,21 +67,25 @@
     setup(props, {emit}) {
       const isOpen = ref(false);
       const selectedName = ref('');
+      const test = ref(true)
 
       function switchMenu() {
-        if (props.isDisabled) {
+        if (!props.isDisabled && props.options.length > 0) {
           isOpen.value = !isOpen.value;
         }
       }
 
       const classList = computed(() => ({
-        disabled: !props.isDisabled,
+        disabled: props.isDisabled,
         large: props.dropDownSize === 'large',
         small: props.dropDownSize === 'small',
+        placeholderColor: !selectedName.value,
+
       }))
       function chosenOption(optionName) {
         selectedName.value = optionName;
         isOpen.value = !isOpen.value;
+        test.value = false
         emit('update:modelValue', selectedName.value)
       }
 
@@ -87,6 +93,7 @@
         isOpen,
         selectedName,
         classList,
+        test,
         chosenOption,
         switchMenu,
       };
@@ -99,6 +106,7 @@
   scoped
 >
 @import "/src/styles/main";
+
 
 .wrapper {
   .menu {
@@ -114,6 +122,7 @@
       border-radius: 8px;
       position: relative;
       z-index: 1;
+
       &.large {
         width: 382px;
       }
@@ -141,7 +150,7 @@
     display: block;
     margin-top: 15px;
     background: $Light-Blue-Dark-Light;
-    height: 130px;
+    max-height: 130px;
     border-radius: 8px;
     border: 1px solid #7792D7;
     position: absolute;
@@ -162,6 +171,12 @@
       &:hover {
         background: $Light_Blue-Medium;
       }
+      &:last-child {
+        border-radius: 0 0 8px 8px;
+      }
+      &:first-child {
+        border-radius: 8px 8px 0 0;
+      }
     }
   }
   .title {
@@ -174,6 +189,11 @@
     }
     .menu__title {
       color: $Grey-Normal;
+    }
+  }
+  &.placeholderColor {
+    .menu__title {
+      color: $Grey-Medium;
     }
   }
   &.large {
@@ -194,14 +214,6 @@
   }
 }
 
-//.title {
-//  @include BodyMedium-Bold;
-//  color: $Light-Blue-Hard;
-//
-//  &.disabled {
-//    color: $Grey-Normal;
-//  }
-//}
 
 
 </style>

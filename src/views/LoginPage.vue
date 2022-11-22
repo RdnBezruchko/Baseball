@@ -72,9 +72,8 @@
       const isAvailableLogin = computed(() => inputData.value.mail && inputData.value.password ? !inputData.value.mail.length && inputData.value.password.length : true)
       
       function checkMail() {
-        if (inputData.value.mail.length > 0 && inputData.value.password.length > 0) {
-          isErrorActive.value = !inputData.value.mail.toString().toLowerCase().match(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
-        }
+        isErrorActive.value = !inputData.value.mail.toString().toLowerCase().match(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
+        console.log('2133121321321')
       }
       
       function showPassword() {

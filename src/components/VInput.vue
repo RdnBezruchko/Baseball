@@ -3,12 +3,12 @@
     <div
       v-if="inputName.length > 0"
       class="input__name"
-      :class="{disabled: !isDisabled}"
+      :class="{disabled: isDisabled}"
     >{{ inputName }}</div>
     <input
       v-model="localValue"
       class="input__item"
-      :class="{error: error && modelValue.length > 0, disabled: !isDisabled}"
+      :class="{error: error && modelValue.length > 0, disabled: isDisabled}"
       :placeholder="placeholder"
       :type="isPasswordHidden ? 'password' : 'text'"
     >
@@ -63,7 +63,7 @@
       },
       isDisabled: {
         type: Boolean,
-        default: true,
+        default: false,
       },
     },
     emits: ['update:modelValue', 'showPassword'],

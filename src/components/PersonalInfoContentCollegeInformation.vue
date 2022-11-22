@@ -56,7 +56,7 @@
       ];
 
       const {collageName, division} = toRefs(props.itemsData)
-      const checked = ref(false)
+      const checked = ref(true)
 
       function check() {
         checked.value = !checked.value

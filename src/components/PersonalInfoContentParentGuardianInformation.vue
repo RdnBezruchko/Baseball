@@ -3,7 +3,7 @@
     <VButton
       v-if="parentStatus.addParent"
       :button-type="'secondary'"
-      @click-btn="switchParent"
+      @click="switchParent"
     >
       {{`${isParentActive ? '2' : '1'}st Parent information`}}
     </VButton>
@@ -85,7 +85,7 @@
     <VButton
       v-if="!parentStatus.addParent"
       :button-type="'secondary'"
-      @click-btn="addParent"
+      @click="addParent"
     >
       + Add Parent(optional)
     </VButton>
