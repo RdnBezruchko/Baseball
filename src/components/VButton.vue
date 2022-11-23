@@ -18,10 +18,6 @@
   export default {
     name: 'VButton',
     props: {
-      inputData: {
-        type: Object,
-        default: () => ({}),
-      },
       buttonSize: {
         type: String,
         default: 'large',

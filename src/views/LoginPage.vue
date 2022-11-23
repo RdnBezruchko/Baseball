@@ -104,7 +104,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 872px;
+    width: calc(100% - 568px);
     
     & > div {
       display: flex;

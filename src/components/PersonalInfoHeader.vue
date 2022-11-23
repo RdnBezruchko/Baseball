@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-    <h3 class="header__title">{{ headerLabel }}</h3>
+    <h3 class="header__label">{{ headerLabel }}</h3>
     <div class="header__profile profile">
       <h5 class="profile__name">{{ profileName }}</h5>
       <div class="profile__round">
@@ -21,7 +21,7 @@
       profileName: {
         type: String,
         default: 'SomeName...',
-      }
+      },
     },
   };
 </script>
@@ -36,7 +36,7 @@
     width: 100%;
     padding: 0 64px;
     border-bottom: 1px $Light-Blue-Medium solid;
-    &__title {
+    &__label {
       @include Heading_3;
       color: $Black-Normal;
     }

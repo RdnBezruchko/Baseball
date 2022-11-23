@@ -1,11 +1,11 @@
 <template>
   <div class="inputs">
-    <div class="inputs__committed committed">
+    <div class="inputs__collage-committed collage-committed">
       <VCheckBox
-        сlass="committed__checkbox"
+        сlass="collage-committed__checkbox"
         @check="check"
       ></VCheckBox>
-      <div class="committed__description">I have already committed to a college</div>
+      <div class="collage-committed__description">I have already committed to a college</div>
     </div>
     <VInput
       v-model="collageName  "
@@ -82,7 +82,7 @@
 >
 @import "/src/styles/main";
 
-.committed {
+.collage-committed {
   display: flex;
   align-items: center;
 

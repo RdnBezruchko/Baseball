@@ -41,7 +41,7 @@
       },
     },
     emits: ['activateSideBar'],
-    
+
     setup(props, {emit}) {
       function activateSideBar(icon) {
         emit('activateSideBar', icon)
@@ -58,7 +58,7 @@
   lang="scss"
 >
   @import "/src/styles/main";
-  
+
   .sidebar {
     display: flex;
     flex-direction: column;
@@ -68,7 +68,7 @@
     width: 120px;
     height: 100vh;
     padding: 24px 24px 81px 24px;
-    
+
     &__round {
       width: 48px;
       height: 48px;
@@ -79,15 +79,15 @@
       cursor: pointer;
       margin-top: 40px;
       transition: .3s all;
-      
+
       &:hover {
         background: $Light-Blue-Heavy;
       }
-      
+
       &:first-child {
         margin: 0;
       }
-      
+
       &.active {
         background: white;
       }
