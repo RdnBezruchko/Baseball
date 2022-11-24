@@ -5,7 +5,6 @@
       <div>
         <h2 class="login-page__header">Log in</h2>
         <div class="login-page__description">Please enter your credentials to access your account</div>
-
         <VInput
           v-model="inputData.mail"
           :input-label="'Email'"
@@ -14,7 +13,6 @@
           class="login-page__input"
           :placeholder="'Enter your Email'"
         ></VInput>
-
         <VInput
           v-model="inputData.password"
           :input-label="'Password'"
@@ -22,7 +20,6 @@
           class="login-page__input"
           :placeholder="'Enter your password'"
         ></VInput>
-
         <VButton
           :is-disabled="isAvailableLogin"
           class="login-page__btn"
@@ -66,13 +63,9 @@
       });
       const isErrorActive = ref(false);
       const isAvailableLogin = computed(() => inputData.value.mail && inputData.value.password ? !inputData.value.mail.length && inputData.value.password.length : true)
-      
       function checkMail() {
         isErrorActive.value = !inputData.value.mail.toString().toLowerCase().match(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
       }
-      
-
-      
       return {
         inputData,
         checkMail,
@@ -88,8 +81,6 @@
   scoped
 >
   @import "/src/styles/main";
-  
-  
   
   .login-page {
     

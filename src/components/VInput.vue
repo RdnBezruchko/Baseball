@@ -1,7 +1,7 @@
 <template>
   <div class="input" :class="classList">
     <div
-      v-if="inputLabel.length > 0"
+      v-if="inputLabel.length"
       class="input__label"
     >{{ inputLabel }}</div>
     <input
@@ -59,7 +59,7 @@
         default: false,
       },
     },
-    emits: ['update:modelValue', 'showPassword'],
+    emits: ['update:modelValue'],
     setup(props, {emit}) {
       const localValue = computed({
         get: () => props.modelValue,
@@ -157,6 +157,4 @@
       }
     }
   }
-
-
 </style>
