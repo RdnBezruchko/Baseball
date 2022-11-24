@@ -1,18 +1,23 @@
 <template>
-  <input @click="check()" class="checkbox" type="checkbox">
+  <input
+    class="checkbox"
+    type="checkbox"
+    @click="check"
+  >
 </template>
 
 <script>
   export default {
     name: 'VCheckBox',
+    emits:['check'],
     setup(props, {emit}) {
       function check() {
-        emit('checkFunc')
+        emit('check')
       }
       return {
-        check
+        check,
       }
-    }
+    },
   };
 
 </script>
@@ -26,7 +31,6 @@
     border-radius: 4px;
     background: blue;
     border: 1px solid $Light-Blue-Hard;
-    border-radius: 4px;
   }
 </style>
 

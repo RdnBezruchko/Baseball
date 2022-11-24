@@ -1,8 +1,8 @@
 <template>
   <header class="header">
-    <h3 class="header__title">{{ title }}</h3>
-    <div class="profile">
-      <h5 class="profile__name">{{ 'SomeName...' }}</h5>
+    <h3 class="header__label">{{ headerLabel }}</h3>
+    <div class="header__profile profile">
+      <h5 class="profile__name">{{ profileName }}</h5>
       <div class="profile__round">
         <img class="profile__logo" src="../assets/svg/PersonalInfo/Softball.svg" alt="">
       </div>
@@ -14,9 +14,13 @@
   export default {
     name: 'VPersonalInfoHeader',
     props: {
-      title: {
+      headerLabel: {
         type: String,
         default: '',
+      },
+      profileName: {
+        type: String,
+        default: 'SomeName...',
       },
     },
   };
@@ -32,7 +36,7 @@
     width: 100%;
     padding: 0 64px;
     border-bottom: 1px $Light-Blue-Medium solid;
-    &__title {
+    &__label {
       @include Heading_3;
       color: $Black-Normal;
     }

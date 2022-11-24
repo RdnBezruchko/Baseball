@@ -1,33 +1,35 @@
 <template>
   <div class="wrapper">
     <div class="wrapper__background"></div>
-    <div class="forgot">
+    <div class="wrapper__forgot-page forgot-page">
       <div>
-        <h2 class="forgot__header">Forgot password</h2>
-        <div class="forgot__description">Enter your email to receive a link to reset your password</div>
+        <h2 class="forgot-page__header">Forgot password</h2>
+        <div class="forgot-page__description">Enter your email to receive a link to reset your password</div>
         <VInput
           v-model="input.mail"
-          class="forgot__input"
+          class="forgot-page__input"
           :placeholder="'Enter your Email'"
+          :input-label="'Email'"
         ></VInput>
         <VButton
-          class="forgot__btn"
-          :class="{disabled: input.mail == '' && input.password == ''}"
-          :button="'Send Reset link'"
-        ></VButton>
+          class="forgot-page__btn"
+          :is-disabled="isAvailableButton"
+        >
+          Send Reset link
+        </VButton>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import {ref} from 'vue';
+  import {computed, ref} from 'vue';
   import VInput from '../components/VInput.vue';
   import VButton from '../components/VButton.vue';
  
   
   export default {
-    name: 'VForgotPage',
+    name: 'ForgotPage',
     components:
       {
         VInput,
@@ -39,8 +41,11 @@
         mail: '',
         password: '',
       });
+      const isAvailableButton = computed(() => input.value.mail ? !input.value.mail.length : true,)
+
       return {
         input,
+        isAvailableButton,
       };
     },
   };
@@ -63,7 +68,7 @@
   }
 
 
-  .forgot {
+  .forgot-page {
     display: flex;
     flex-direction: column;
     align-items: center;

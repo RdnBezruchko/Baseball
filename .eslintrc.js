@@ -53,15 +53,15 @@ module.exports = {
         'prefer-destructuring': 'off',
         radix: ['error', 'as-needed'],
         'space-in-parens': ['error', 'never'],
-        indent: ['warn', 2],
+        indent: ['error', 2],
         'vue/html-closing-bracket-spacing': [
             'error',
         ],
-        'vue/html-indent': ['warn', 2],
+        'vue/html-indent': ['error', 2],
         'vue/require-default-prop': 'error',
         'vue/require-prop-types': 'error',
         'vue/script-indent': [
-            'warn',
+            'error',
             2,
             {
                 baseIndent: 1,

@@ -1,32 +1,40 @@
 <template>
-  <div class="input">
+  <div class="input" :class="classList">
     <div
-      v-if="inputName.length > 0"
-      class="input__name"
-      :class="{disabled: checked == false}"
-    >{{ inputName }}</div>
+      v-if="inputLabel.length"
+      class="input__label"
+    >{{ inputLabel }}</div>
     <input
       v-model="localValue"
       class="input__item"
-      :class="{error: error == null && inputData.length > 0, disabled: checked == false}"
-      :placeholder="placeholderName"
-      :type="passwordHide ? 'password' : 'text'"
+      :placeholder="placeholder"
+      :type="isPasswordIconHidden && isPasswordHidden ? 'password' : 'text'"
+    >
+    <img
+      v-if="isPasswordIconHidden && isPasswordHidden"
+      class="input__icon"
+      src="../assets/svg/eye%20on.svg"
+      alt="#"
+      @click="showPassword"
+    >
+    <img
+      v-if="isPasswordIconHidden && !isPasswordHidden"
+      class="input__icon"
+      src="../assets/svg/eye%20off.svg"
+      alt="#"
+      @click="showPassword"
     >
   </div>
+
 </template>
 
 <script>
-  import {computed} from 'vue';
-  
+  import {computed, ref} from 'vue';
+
   export default {
     name: 'VInput',
     props: {
-      // LOGIN PAGE
-      inputName: {
-        type: String,
-        default: '',
-      },
-      inputData: {
+      inputLabel: {
         type: String,
         default: '',
       },
@@ -34,24 +42,22 @@
         type: [String, Number],
         default: '',
       },
-      placeholderName: {
+      placeholder: {
         type: String,
         default: 'Type something...',
       },
       error: {
-        type: String,
-        default: '',
-      },
-      passwordHide: {
         type: Boolean,
         default: false,
       },
-      checked: {
+      isPasswordIconHidden: {
         type: Boolean,
-        default: undefined,
+        default: false,
       },
-      
-    //-----------------------------------------
+      isDisabled: {
+        type: Boolean,
+        default: false,
+      },
     },
     emits: ['update:modelValue'],
     setup(props, {emit}) {
@@ -59,11 +65,21 @@
         get: () => props.modelValue,
         set: (value) => emit('update:modelValue', value),
       });
-      console.log(props.checked)
+      const classList = computed(() => ({
+        disabled: props.isDisabled,
+        error: props.error && !!props.modelValue.trim().length,
+        'input_not-labeled': !props.inputLabel.length
+      }))
+      const isPasswordHidden = ref(true);
+      function showPassword() {
+        isPasswordHidden.value = !isPasswordHidden.value
+      }
       return {
         localValue,
+        isPasswordHidden,
+        showPassword,
+        classList,
       };
-
     },
   };
 </script>
@@ -74,15 +90,23 @@
   scoped
 >
   @import "/src/styles/main";
-  
+
   .input {
     width: 382px;
-    &__name {
+    position: relative;
+    &__label {
       @include BodyMedium-Bold;
       color: $Light-Blue-Hard;
+      margin-bottom: 12px;
       &.disabled {
         color: $Grey-Normal;
       }
+    }
+    &__icon {
+      cursor: pointer;
+      position: absolute;
+      top: 45px;
+      right: 20px;
     }
     &__item {
       background: $Light-Blue-Light;
@@ -93,41 +117,44 @@
       border: none;
       border-radius: 8px;
       @include BodyLarge-Medium;
-      padding: 17px 16px;
-      margin-top: 12px;
-  
-  
+      padding: 17px 40px 17px 16px;
+
       &:focus {
         color: $Black-Normal;
         background: $Light-Blue-Dark-Light;
         border: 1px solid $Light-Blue-Dark;
-    
       }
-  
       &::placeholder {
         color: $Grey-Medium;
       }
-  
-      &.disabled {
+    }
+    &.disabled {
+      .input__label {
+        color: $Grey-Normal;
+      }
+      .input__item {
         background: $Light-Blue-Light;
         cursor: default;
-    
         &::placeholder {
           color: $Grey-Normal;
         }
       }
-  
-      &.error {
+    }
+    &.error {
+      .input__item {
         background: $Red-Light;
         color: $Red-Easy;
         border: 1px solid $Red-Easy;
-    
         &::placeholder {
           color: $Red-Easy;
         }
       }
-      
+    }
+    &.input_not-labeled {
+      .input__icon {
+        top: 15px;
+        right: 20px;
+      }
     }
   }
-
 </style>

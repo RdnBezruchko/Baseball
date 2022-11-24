@@ -3,20 +3,20 @@
     <VInput
       v-model="phoneNumber"
       class="inputs__item"
-      :input-name="'Player cell phone number*'"
-      :placeholder-name="'phone'"
+      :input-label="'Player cell phone number*'"
+      :placeholder="'phone'"
     ></VInput>
     <VInput
       v-model="instagram"
       class="inputs__item"
-      :input-name="'Instagram (optional)'"
-      :placeholder-name="'Instagram'"
+      :input-label="'Instagram (optional)'"
+      :placeholder="'Instagram'"
     ></VInput>
     <VInput
       v-model="twitter"
       class="inputs__item"
-      :input-name="'Twitter (optional)'"
-      :placeholder-name="'Twitter'"
+      :input-label="'Twitter (optional)'"
+      :placeholder="'Twitter'"
     ></VInput>
   </div>
 </template>
@@ -25,7 +25,7 @@
   import VInput from './VInput.vue';
   
   export default {
-    name: 'VContactInformation',
+    name: 'PersonalInfoContentContactInformation',
     components:
       {
         VInput,
@@ -62,7 +62,7 @@
       margin-top: 32px;
       
       &:first-child {
-        margin: 0px;
+        margin: 0;
       }
     }
   }

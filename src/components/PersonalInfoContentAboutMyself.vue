@@ -3,27 +3,26 @@
     <VInput
       v-model="email"
       class="inputs__item"
-      :input-name="'Email'"
-      :placeholder-name="'Enter your Email'"
+      :input-label="'Email'"
+      :placeholder="'Enter your Email'"
     ></VInput>
     <VInput
       v-model="firstName"
       class="inputs__item"
-      :input-name="'First Name'"
-      :placeholder-name="'Enter First Name'"
+      :input-label="'First Name'"
+      :placeholder="'Enter First Name'"
     ></VInput>
     <VInput
       v-model="middleName"
       class="inputs__item"
-      :input-name="'Middle Name (optional)'"
-      :placeholder-name="'Enter Middle Name (optional)'"
+      :input-label="'Middle Name (optional)'"
+      :placeholder="'Enter Middle Name (optional)'"
     ></VInput>
     <VInput
-      
       v-model="lastName"
       class="inputs__item"
-      :input-name="'Last Name'"
-      :placeholder-name="'Enter Last Name'"
+      :input-label="'Last Name'"
+      :placeholder="'Enter Last Name'"
     ></VInput>
   </div>
 </template>
@@ -33,7 +32,7 @@
   import VInput from './VInput.vue';
   
   export default {
-    name: 'VAboutMyself',
+    name: 'PersonalInfoContentAboutMyself',
     components: {
       VInput,
     },
@@ -66,15 +65,11 @@
     display: flex;
     flex-direction: column;
     
-    &__dropdown {
-      margin-top: 32px;
-    }
-    
     &__item {
       margin-top: 32px;
       
       &:first-child {
-        margin: 0px;
+        margin: 0;
       }
     }
   }

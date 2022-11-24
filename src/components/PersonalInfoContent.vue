@@ -1,9 +1,9 @@
 <template>
   <div class="content">
-    <VPersonalInfoNav
+    <PersonalInfoContentNav
       :nav-items="navItems"
-      @active="active"
-    ></VPersonalInfoNav>
+      @activate-nav-item="activateNavItem"
+    ></PersonalInfoContentNav>
     
     <div class="content__information">
       <component
@@ -12,10 +12,12 @@
         :items-data="contentData"
         class="content__inputs"
       />
-      <VSmallButton
-        :button="'Save'"
+      <VButton
         class="content__btn"
-      ></VSmallButton>
+        :button-size="'small'"
+      >
+        Save
+      </VButton>
     </div>
   </div>
 
@@ -24,31 +26,31 @@
 <script>
   
   import {ref} from 'vue';
-  import VPersonalInfoNav from './VPersonalInfoNav.vue';
-  import VSmallButton from './VSmallButton.vue';
-  import VAboutMyself from './VAboutMyself.vue';
-  import VAddressAndZipInformation from './VAddressAndZipInformation.vue';
-  import VContactInformation from './VContactInformation.vue';
-  import VSizeInformation from './VSizeInformation.vue';
-  import VCollegeInformation from './VCollegeInformation.vue';
-  import VParentGuardianInformation from './VParentGuardianInformation.vue';
-  import VChangeEmailAndPassword from './VChangeEmailAndPassword.vue';
-  
+  import PersonalInfoContentNav from './PersonalInfoContentNav.vue';
+  import PersonalInfoContentAboutMyself from './PersonalInfoContentAboutMyself.vue';
+  import PersonalInfoContentAddressAndZipInformation from './PersonalInfoContentAddressAndZipInformation.vue';
+  import PersonalInfoContentContactInformation from './PersonalInfoContentContactInformation.vue';
+  import PersonalInfoContentSizeInformation from './PersonalInfoContentSizeInformation.vue';
+  import PersonalInfoContentCollegeInformation from './PersonalInfoContentCollegeInformation.vue';
+  import PersonalInfoContentParentGuardianInformation from './PersonalInfoContentParentGuardianInformation.vue';
+  import PersonalInfoContentChangeEmailAndPassword from './PersonalInfoContentChangeEmailAndPassword.vue';
+  import VButton from './VButton.vue'
+
   export default {
-    name: 'VPersonalInfoProfileContent',
+    name: 'PersonalInfoContent',
     components: {
-      VSmallButton,
-      VPersonalInfoNav,
-      VAboutMyself,
-      VAddressAndZipInformation,
-      VChangeEmailAndPassword,
-      VParentGuardianInformation,
-      VCollegeInformation,
-      VSizeInformation,
-      VContactInformation,
+      PersonalInfoContentNav,
+      PersonalInfoContentAboutMyself,
+      PersonalInfoContentAddressAndZipInformation,
+      PersonalInfoContentChangeEmailAndPassword,
+      PersonalInfoContentParentGuardianInformation,
+      PersonalInfoContentCollegeInformation,
+      PersonalInfoContentSizeInformation,
+      PersonalInfoContentContactInformation,
+      VButton,
     },
     setup() {
-      const component = ref('VAboutMyself');
+      const component = ref('PersonalInfoContentAboutMyself');
       const contentData = ref({
         // About myself
         email: '',
@@ -97,40 +99,40 @@
         {
           name: 'About myself',
           active: true,
-          component: 'VAboutMyself',
+          component: 'PersonalInfoContentAboutMyself',
         },
         {
           name: 'Address and zip information',
           active: false,
-          component: 'VAddressAndZipInformation',
+          component: 'PersonalInfoContentAddressAndZipInformation',
         },
         {
           name: 'Contact information',
           active: false,
-          component: 'VContactInformation',
+          component: 'PersonalInfoContentContactInformation',
         },
         {
           name: 'Size information',
           active: false,
-          component: 'VSizeInformation',
+          component: 'PersonalInfoContentSizeInformation',
         },
         {
           name: 'College information',
           active: false,
-          component: 'VCollegeInformation',
+          component: 'PersonalInfoContentCollegeInformation',
         },
         {
           name: 'Parent/Guardian information',
           active: false,
-          component: 'VParentGuardianInformation',
+          component: 'PersonalInfoContentParentGuardianInformation',
         },
         {
           name: 'Change email/password',
           active: false,
-          component: 'VChangeEmailAndPassword',
+          component: 'PersonalInfoContentChangeEmailAndPassword',
         }]);
       
-      function active(navItem) {
+      function activateNavItem(navItem) {
         component.value = navItem.component;
         navItems.value.forEach((element) => {
           element.active = false;
@@ -141,7 +143,7 @@
       return {
         navItems,
         component,
-        active,
+        activateNavItem,
         contentData,
       };
     },
@@ -159,19 +161,14 @@
     height: calc(100% - 120px);
     justify-content: space-between;
     padding: 40px 64px 64px 64px;
-    
     &__information {
       display: flex;
+      justify-content: space-between;
+      width: calc(100% - 560px);
     }
-    
-    .content__input {
-      margin-right: 116px;
-    }
-    
     .content__btn {
       align-self: end;
     }
-    
     &__inputs {
       margin-right: 116px;
     }
