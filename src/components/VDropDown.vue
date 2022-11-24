@@ -1,7 +1,8 @@
 <template>
   <div class="wrapper" :class="classList">
     <div
-      class="wrapper__label"
+      v-if="dropDownTitle"
+      class="wrapper__title"
     >{{ dropDownTitle }}
     </div>
     <div class="wrapper__menu menu">
@@ -42,7 +43,7 @@
     props: {
       dropDownTitle: {
         type: String,
-        default: 'Type Something',
+        default: '',
       },
       options: {
         type: Array,
@@ -111,12 +112,12 @@
 
 
 .wrapper {
-  &__label {
+  &__title {
     @include BodyMedium-Bold;
     color: $Light-Blue-Hard;
+    margin-bottom: 12px;
   }
   .menu {
-    margin-top: 12px;
     &__wrapper {
       cursor: pointer;
       display: flex;
@@ -141,13 +142,13 @@
 
   .sub-menu {
     display: block;
-    margin-top: 15px;
     background: $Light-Blue-Dark-Light;
     max-height: 130px;
     border-radius: 8px;
     border: 1px solid #7792D7;
     position: absolute;
     z-index: 2;
+    margin-top: 15px;
     &__item {
       @include BodyLarge-Medium;
       color: $Black-Normal;
@@ -166,7 +167,7 @@
     }
   }
   &.disabled {
-    .wrapper__label {
+    .wrapper__title {
       color: $Grey-Normal;
     }
     .menu__label {

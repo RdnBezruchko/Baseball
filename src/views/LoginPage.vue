@@ -8,7 +8,6 @@
 
         <VInput
           v-model="inputData.mail"
-          :mail-string="inputData.mail"
           :input-label="'Email'"
           :error="isErrorActive"
           type="email"
@@ -20,10 +19,8 @@
           v-model="inputData.password"
           :input-label="'Password'"
           :is-password-icon-hidden="true"
-          :is-password-hidden="isPasswordHidden"
           class="login-page__input"
           :placeholder="'Enter your password'"
-          @show-password="showPassword"
         ></VInput>
 
         <VButton
@@ -63,7 +60,6 @@
       VButton,
     },
     setup() {
-      const isPasswordHidden = ref(true);
       const inputData = ref({
         mail: '',
         password: '',
@@ -75,16 +71,12 @@
         isErrorActive.value = !inputData.value.mail.toString().toLowerCase().match(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
       }
       
-      function showPassword() {
-        isPasswordHidden.value = !isPasswordHidden.value;
-      }
+
       
       return {
         inputData,
         checkMail,
         isErrorActive,
-        showPassword,
-        isPasswordHidden,
         isAvailableLogin,
       };
     },
